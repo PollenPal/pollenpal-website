@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PollenPal - ML-Enabled Beehive Monitoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .logo .pollen {
+            color: #F9B233;
+        }
+
+        .logo .pal {
+            color: #2C3E50;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%);
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #F9B233;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #F9B233;
+            color: white;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #E5A020;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 178, 51, 0.3);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .problem h2 {
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2C3E50;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            background: #FFF9E6;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #F9B233;
+        }
+
+        .problem-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .problem-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .problem-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .problem-card li:before {
+            content: "•";
+            color: #F9B233;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+        }
+
+        .stat-callout {
+            background: #2C3E50;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 50px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .stat-callout .number {
+            color: #F9B233;
+            font-size: 36px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: #F8F9FA;
+        }
+
+        .how-it-works h2 {
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2C3E50;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #F9B233;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .step p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .step img {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Markets Section */
+        .markets {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .markets h2 {
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2C3E50;
+        }
+
+        .market-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .tab-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px solid #F9B233;
+            background: white;
+            color: #F9B233;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: #F9B233;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .market-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .market-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .market-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .market-features li {
+            padding: 15px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .market-features li:before {
+            content: "✓";
+            color: #F9B233;
+            font-weight: 700;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            background: #FFF9E6;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #F9B233;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .testimonial .author {
+            font-weight: 600;
+            color: #555;
+            font-style: normal;
+        }
+
+        .value-section {
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 2px solid #E5E7EB;
+        }
+
+        .value-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #2C3E50;
+            text-align: center;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #2C3E50;
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #F9FAFB;
+        }
+
+        .highlight-row {
+            background: #FFF9E6 !important;
+            font-weight: 600;
+        }
+
+        .highlight-row td {
+            color: #2C3E50;
+            font-size: 18px;
+        }
+
+        .table-note {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Founder Section */
+        .founder {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .founder h2 {
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2C3E50;
+        }
+
+        .founder-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .founder-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .founder-story h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2C3E50;
+        }
+
+        .founder-story p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: white;
+        }
+
+        .form-section h2 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-section p {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #F9B233;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: #F9B233;
+            color: white;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #E5A020;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 178, 51, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #2C3E50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .market-content {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 28px !important;
+            }
+
+            h3 {
+                font-size: 22px !important;
+            }
+
+            .comparison-table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="pollenpal_image-001.png" alt="PollenPal Logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Empowering Effective Beekeeping Through <span class="highlight">Machine Learning</span></h2>
+            <p>PollenPal is a hardware and software solution designed for beekeepers, using computer vision and machine learning to deliver actionable insights that keep hives alive. Easy to install devices are mounted to the beehive entrance and use cameras and sound sensors to monitor for threats like varroa mites and invasive bee species that kill 50% of hives each year.</p>
+            <p>With solutions for both hobbyists and commercial farms, PollenPal helps beekeepers stay profitable through reduced colony losses and preserved honey and pollination revenue.</p>
+            <a href="#early-access" class="cta-button">Partner With Us for Early Access</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>The Beekeeping Crisis</h2>
+            <p style="text-align: center; font-size: 20px; max-width: 800px; margin: 0 auto 40px; color: #555;">
+                The $13B+ beekeeping industry faces escalating threats that are devastating operations nationwide.
+            </p>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Varroa Mites</h3>
+                    <ul>
+                        <li>Latch onto bees and larvae, spreading deadly viruses and weakening hives undetected until collapse</li>
+                        <li>Spread exponentially between colonies, with a single infected hive contaminating entire apiaries within weeks</li>
+                    </ul>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Invasive Bee Species</h3>
+                    <ul>
+                        <li>Invasive Africanized ("killer") bees outcompete European bees for resources and nesting, displacing managed hives</li>
+                        <li>Extremely aggressive behavior that can extend 100+ yards, making beekeeping near impossible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stat-callout">
+                These threats cause <span class="number">45%+ annual colony losses</span> and over <span class="number">$635M</span> in economic damages
+            </div>
+
+            <p style="text-align: center; font-size: 18px; max-width: 900px; margin: 40px auto 0; color: #555;">
+                Traditional commercial beehive management is manual, inefficient, and unscalable, resulting in high replacement costs and lost revenue from honey sales and pollination services. New hobbyist beekeepers struggle to keep hives alive due to lack of knowledge, losing $1,000+ in value from missed honey production and hive replacement costs.
+            </p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How PollenPal Works</h2>
+            <p style="text-align: center; font-size: 20px; max-width: 800px; margin: 0 auto 40px; color: #555;">
+                Our machine learning-powered hardware and software solution helps beekeepers manage their operations with ease and precision.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <img src="pollenpal_image-008.png" alt="PollenPal Hardware">
+                    <div class="step-number">1</div>
+                    <h3>Hardware Actively Monitors</h3>
+                    <p>PollenPal device mounts to beehive entrance and uses camera and sound sensors to continuously monitor inbound traffic into the hive. Built for remote deployment with solar power and LTE connectivity, enabling 24/7 operation in any location without access to power outlets.</p>
+                </div>
+
+                <div class="step">
+                    <img src="pollenpal_image-009.png" alt="ML Detection">
+                    <div class="step-number">2</div>
+                    <h3>Machine Learning Algorithms Identify Threats</h3>
+                    <p>Computer vision and machine learning algorithms identify first signs of varroa mites and invasive bee behavior, detecting threats at 1-1.5mm scale with high accuracy.</p>
+                </div>
+
+                <div class="step">
+                    <img src="pollenpal_image-013.png" alt="Dashboard Alerts">
+                    <div class="step-number">3</div>
+                    <h3>Instant Alerts Enable Action</h3>
+                    <p>Beekeepers receive instant alerts through simple dashboards with real-time notifications and hive logs, enabling proactive action before threats spread.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions & Financial Impact Combined -->
+    <section class="markets">
+        <div class="container">
+            <h2>Solutions for Every Beekeeper</h2>
+
+            <div class="market-tabs">
+                <button class="tab-button active" onclick="switchTab('commercial')">Commercial Operations</button>
+                <button class="tab-button" onclick="switchTab('hobbyist')">Hobbyist Beekeepers</button>
+            </div>
+
+            <!-- Commercial Tab -->
+            <div id="commercial" class="tab-content active">
+                <div class="market-content">
+                    <div class="market-image">
+                        <img src="pollenpal_image-008.png" alt="Commercial Beekeeping">
+                    </div>
+                    <div class="market-features">
+                        <h3>B2B Solution for Commercial Farms</h3>
+                        <ul>
+                            <li>Designed for remote deployment without access to power with a central solar and LTE node powering groups of devices</li>
+                            <li>Serves as a hive activity and frame coverage monitor while hives are on the road, creating an audit trail of hive health</li>
+                            <li>Supports easy hardware installation with clamp-on mechanisms for practical usage during pollination routes and honey harvests</li>
+                            <li>Includes integrated hive management software with recordkeeping, harvest logging, supply and queen/nuc ordering</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <p>"Identifying and treating Africanization early would be worth 100k a year to our operation"</p>
+                        <p class="author">– Wendy, Blue Ridge Honey Co.</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"How the f**k can you get through 10,000 hives with 10 employees?"</p>
+                        <p class="author">– Kristen, Alvéole Beekeeping</p>
+                    </div>
+                </div>
+
+                <!-- Commercial Financial Impact -->
+                <div class="value-section">
+                    <h3>Proven Financial Impact: 5,000-Colony Operation</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Traditional Management</th>
+                                    <th>With PollenPal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hive loss rate</strong></td>
+                                    <td>40%</td>
+                                    <td>10%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Remaining # colonies</strong></td>
+                                    <td>3,000</td>
+                                    <td>4,500</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Revenue</strong></td>
+                                    <td>$1,200k</td>
+                                    <td>$1,425k</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hive replacement costs</strong></td>
+                                    <td>$400k</td>
+                                    <td>$100k</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Other fixed and variable costs</strong></td>
+                                    <td>$600k</td>
+                                    <td>$713k</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total costs</strong></td>
+                                    <td>$1,000k</td>
+                                    <td>$813k</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>Total Margin</strong></td>
+                                    <td>$200k</td>
+                                    <td>$613k</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="table-note">Note: PollenPal cost not included. Source: USDA NASS honey report, ABJ, Bee Informed Partnership</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hobbyist Tab -->
+            <div id="hobbyist" class="tab-content">
+                <div class="market-content">
+                    <div class="market-image">
+                        <img src="pollenpal_image-019.png" alt="Hobbyist Beekeeping">
+                    </div>
+                    <div class="market-features">
+                        <h3>B2C Solution for At-Home Hobbyists</h3>
+                        <ul>
+                            <li>Provides insightful, actionable data in an easy-to-use dashboard to set inexperienced hobbyist beekeepers up for success</li>
+                            <li>Offers significantly easier deployment by leveraging customer's home internet and power supply</li>
+                            <li>Includes an AI-powered digital beekeeping assistant for instant hive diagnosis via a phone picture, with option for real beekeeper chat</li>
+                            <li>Enables live streaming of hive activity for easy sharing with other beekeepers and friends on social media</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <p>"For my first 4 years, I spent $600 on lost hives, and I didn't know why I was losing them!"</p>
+                        <p class="author">– Karen, South Florida</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"I just lost my 3rd hive and I'm ready to throw in the towel"</p>
+                        <p class="author">– Beekeeping like a Girl Blog</p>
+                    </div>
+                </div>
+
+                <!-- Hobbyist Financial Impact -->
+                <div class="value-section">
+                    <h3>Proven Financial Impact: 5-Hive Beekeeper</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Traditional Management</th>
+                                    <th>With PollenPal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong># hives lost</strong></td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hive replacement costs</strong></td>
+                                    <td>$500</td>
+                                    <td>$0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Other fixed + variable costs</strong></td>
+                                    <td>$600</td>
+                                    <td>$750</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total annual costs</strong></td>
+                                    <td>$1,100</td>
+                                    <td>$750</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Honey collected</strong></td>
+                                    <td>150 lbs</td>
+                                    <td>250 lbs</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Value of honey</strong></td>
+                                    <td>$1,500</td>
+                                    <td>$2,500</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>Annual value added by PollenPal</strong></td>
+                                    <td>-</td>
+                                    <td>$1,350</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Story -->
+    <section class="founder">
+        <div class="container">
+            <h2 style="line-height: 1.3;">Proudly American<br><span style="font-size: 0.9em; font-weight: 600;">Passionate about</span><br><span style="color: #F9B233; font-size: 1.1em; font-weight: 700;">Technology</span> <span style="font-style: italic; font-size: 0.95em; font-weight: 400;">and</span> <span style="color: #F9B233; font-size: 1.1em; font-weight: 700;">Beekeeping</span></h2>
+            <div class="founder-content">
+                <div class="founder-image">
+                    <img src="robert.png" alt="Robert Schulte">
+                </div>
+                <div class="founder-story">
+                    <p>After years in consulting and engineering, Robert turned his focus to America's agricultural future. From urban beekeeping to commercial operations, one common theme kept emerging — the vital role of bees and the devastating impact of losing them.</p>
+                    <p><strong>That's when the idea struck: to save the bees, we must first save the beekeeper. But how?</strong></p>
+                    <p>For 17 years, Robert kept hives and witnessed firsthand the challenges beekeepers face. This past summer, he lived out of his car, traveling across the country to meet commercial operators managing thousands of hives. The answer became clear: what if we could give every beekeeper the insights of a master beekeeper — in every hive?</p>
+                    <p>With mentorship from industry veterans and a partnership with co-founder Daniel Drew (aerospace engineer from Blue Origin and APEX), PollenPal has done exactly that. We've built technology to give beekeepers real-time insight into hive health, threat detection, and colony activity — all without lifting a lid.</p>
+                    <p><strong>Our mission is simple: help beekeepers manage more hives, reduce losses, cut costs, and grow their business with confidence.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="early-access" class="form-section">
+        <div class="container">
+            <h2>Partner With Us for Early Access</h2>
+            <p>Join us in revolutionizing beekeeping. Get early access to PollenPal and help shape the future of hive management.</p>
+
+            <div class="form-container">
+                <form id="earlyAccessForm" action="https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe" onsubmit="submitForm()">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="entry.NAME_ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="entry.EMAIL_ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">I am a *</label>
+                        <select id="type" name="entry.TYPE_ID" required>
+                            <option value="">Select...</option>
+                            <option value="Hobbyist Beekeeper">Hobbyist Beekeeper</option>
+                            <option value="Commercial Beekeeper">Commercial Beekeeper</option>
+                            <option value="Investor/Partner">Investor/Partner</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hives">Number of Hives (if applicable)</label>
+                        <input type="text" id="hives" name="entry.HIVES_ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us about your interest in PollenPal</label>
+                        <textarea id="message" name="entry.MESSAGE_ID"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Get Early Access</button>
+                </form>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PollenPal LLC. All rights reserved.</p>
+            <p>Confidential & Proprietary</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality for market sections
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all buttons in markets section
+            document.querySelectorAll('.markets .tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Form submission handling
+        function submitForm() {
+            setTimeout(function() {
+                alert('Thank you for your interest! We will be in touch soon.');
+                document.getElementById('earlyAccessForm').reset();
+            }, 500);
+            return false;
+        }
+
+        // Smooth scrolling for CTA button
+        document.querySelector('a[href="#early-access"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#early-access').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
