@@ -23,6 +23,27 @@
             padding: 0 20px;
         }
 
+        .founder-image {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;    /* space between robert and daniel*/
+            align-items: center;    /*center captions under images */
+        }
+
+        .founder-image figure {
+            width: 100%;
+            margin: 0;
+        }
+
+        .founder-image figcaption {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        
         /* Header */
         header {
             background: white;
@@ -853,7 +874,15 @@
             <h2 style="line-height: 1.3;">Proudly American<br><span style="font-size: 0.9em; font-weight: 600;">Passionate about</span><br><span style="color: #F9B233; font-size: 1.1em; font-weight: 700;">Technology</span> <span style="font-style: italic; font-size: 0.95em; font-weight: 400;">and</span> <span style="color: #F9B233; font-size: 1.1em; font-weight: 700;">Beekeeping</span></h2>
             <div class="founder-content">
                 <div class="founder-image">
-                    <img src="robert.png" alt="Robert Schulte">
+                    <figure>
+                      <img src="robert.png" alt="Robert Schulte headshot">
+                      <figcaption>Robert Schulte — Co-Founder & CEO</figcaption>
+                    </figure>
+
+                    <figure>
+                      <img src="daniel.png" alt="Daniel Drew headshot">
+                      <figcaption>Daniel Drew — Co-Founder</figcaption>
+                    </figure>
                 </div>
                 <div class="founder-story">
                     <p>After years in consulting and engineering, Robert turned his focus to America's agricultural future. From urban beekeeping to commercial operations, one common theme kept emerging — the vital role of bees and the devastating impact of losing them.</p>
