@@ -46,6 +46,10 @@ button { font: inherit; cursor: pointer; }
 
 .section { padding: 120px 0; }
 .section-tight { padding: 96px 0; }
+/* When a .section directly follows the hero, collapse its top padding
+   so the gap between hero and first content section reads as one rhythm
+   not two stacked. */
+.hero + .section { padding-top: 64px; }
 .bg-cream { background: var(--cream-soft); }
 .bg-ink { background: var(--ink); color: #fff; }
 
