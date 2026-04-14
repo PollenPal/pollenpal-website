@@ -84,7 +84,10 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   height: 1px;
   background: var(--gold);
 }
-.eyebrow.center { justify-content: center; }
+/* .eyebrow is inline-flex so it sits inline next to text by default.
+   .eyebrow.center promotes it to a block-level flex container so it
+   self-centers regardless of whether the parent has text-align center. */
+.eyebrow.center { display: flex; justify-content: center; }
 .eyebrow.center::before { display: none; }
 
 .serif-italic {
@@ -187,7 +190,20 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   align-items: start;
   margin-bottom: 56px;
 }
-.site-footer .footer-brand img { height: 28px; filter: brightness(0) invert(1); margin-bottom: 16px; }
+.site-footer .footer-brand .footer-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.site-footer .footer-brand .footer-wordmark img {
+  height: 28px;
+  width: auto;
+}
 .site-footer .footer-brand p { color: rgba(255,255,255,0.65); font-size: 14px; max-width: 280px; }
 .site-footer h4 {
   color: #fff;
@@ -257,7 +273,9 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   .section { padding: 72px 0; }
   .section-tight { padding: 56px 0; }
   .nav-links { display: none; }
-  .nav-toggle { display: block; }
+  /* Push the hamburger to the right edge of the header so it sits
+     next to the CTA button instead of floating in the middle. */
+  .nav-toggle { display: block; margin-left: auto; margin-right: 12px; }
   .nav-toggle.open + .nav-links {
     display: flex;
     flex-direction: column;
@@ -277,7 +295,15 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   :root { --gutter: 20px; }
   .stat-strip { grid-template-columns: 1fr; }
   .site-footer .footer-grid { grid-template-columns: 1fr; }
-  .proof-row { gap: 24px; flex-wrap: wrap; }
+  /* Force 3 equal columns so the proof items don't wrap to a 2 + 1
+     awkward grid. The numbers and labels are short enough to fit. */
+  .proof-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .proof-num { font-size: 22px; }
+  .proof-label { font-size: 11px; line-height: 1.35; }
 }
 
 /* ===== BACKED BY STRIP ===== */
