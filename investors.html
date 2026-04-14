@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PollenPal · Investors</title>
+  <meta name="description" content="PollenPal is physical AI for the $107B precision agriculture IoT market. Pilots deployed, customer interest validated, seeking seed investment to scale.">
+  <link rel="icon" href="/images/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Critical hero CSS, same as homepage, inlined for first paint */
+    .hero { position: relative; padding: 96px 0 120px; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; top: 0; right: -15%;
+      width: 60%; height: 100%;
+      background: radial-gradient(ellipse at center, var(--cream-soft) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative; display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .hero h1 { margin-bottom: 28px; }
+    .hero .lede { margin-bottom: 40px; }
+    .hero-ctas { display: flex; gap: 14px; align-items: center; margin-bottom: 44px; flex-wrap: wrap; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .visual-frame {
+      position: relative; width: 100%; max-width: 440px; aspect-ratio: 4/5;
+      border-radius: var(--radius-lg); overflow: hidden; background: var(--ink);
+      box-shadow: 0 30px 80px -20px rgba(10,10,10,0.25), 0 8px 20px -6px rgba(10,10,10,0.12);
+    }
+    .visual-frame video { width: 100%; height: 100%; object-fit: cover; }
+    .visual-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55) 100%); pointer-events: none; }
+    @media (max-width: 960px) {
+      .hero { padding: 56px 0 80px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .visual-frame { max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="PollenPal"></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="/#how">How it works</a>
+      <a href="/#advantage">Why PollenPal</a>
+      <a href="/#roadmap">Roadmap</a>
+      <a href="/investors" class="current">Investors</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get in touch →</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Seeking seed investment</div>
+        <h1>Empowering beekeeping through <span class="serif-italic">physical AI</span>.</h1>
+        <p class="lede">Hardware and software for commercial apiaries and farms. Pilots deployed in CT, NY, and CA. Customer interest validated. Seeking investment to scale into the $107B precision agriculture IoT market.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Get in touch →</a>
+          <a href="#impact" class="btn btn-secondary">See the numbers</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-frame">
+          <video autoplay muted loop playsinline poster="/images/hero-poster.jpg" preload="metadata">
+            <source src="/images/hero.mp4" type="video/mp4">
+          </video>
+          <div class="visual-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section problem bg-cream">
+    <div class="wrap">
+      <div class="eyebrow center">The problem</div>
+      <h2>Bees feed the world. But bees are <span class="serif-italic">dying faster</span> than food demand is growing.</h2>
+      <p class="lede center">US beekeepers lose about 40% of their colonies a year (48% in 2023). Replacement costs run $2.5B+ globally. The workforce is aging. The median commercial beekeeper is 66, and 79% use no digital management tools at all. The industry is ready for a reset.</p>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section how">
+    <div class="wrap">
+      <div class="eyebrow center">The solution</div>
+      <h2>Physical AI for every hive.</h2>
+      <div class="how-grid">
+        <div class="step">
+          <img class="step-img" src="/images/device-field.jpg" alt="PollenPal device deployed in a field">
+          <div class="step-body">
+            <div class="step-num">01 · HARDWARE</div>
+            <h3>Watches every bee in and out</h3>
+            <p>Off-the-shelf compute. Solar plus LTE for remote yards. Drops in under standard 10-frame Langstroth boxes. No custom hive bodies.</p>
+          </div>
+        </div>
+        <div class="step">
+          <img class="step-img" src="/images/ml-algo.jpg" alt="PollenPal computer vision detecting and tracking individual bees">
+          <div class="step-body">
+            <div class="step-num">02 · MACHINE LEARNING</div>
+            <h3>YOLOv11 on 20k+ field images</h3>
+            <p>Tracks colony activity in real time. Detects mites at 1 to 1.5mm, africanization markers, and missing-queen indicators. Cloud inference today, central GPU on the roadmap.</p>
+          </div>
+        </div>
+        <div class="step">
+          <img class="step-img" src="/images/dashboard-phone.jpg" alt="Hive dashboard">
+          <div class="step-body">
+            <div class="step-num">03 · WEB APP</div>
+            <h3>Hive-level alerts, multi-yard views</h3>
+            <p>Designed with beekeeper input. Actionable insights over complex graphs. Recordkeeping, harvest logging, supply ordering integrated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIAL IMPACT -->
+  <section id="impact" class="section bg-cream">
+    <div class="wrap">
+      <div class="eyebrow center">Financial impact</div>
+      <h2 style="text-align:center;margin-bottom:48px;">Margin uplift on a 5,000-colony yard.</h2>
+      <div class="impact-table">
+        <table>
+          <thead>
+            <tr><th></th><th>Traditional management</th><th>With PollenPal</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hive loss rate</td><td>40%</td><td>10%</td></tr>
+            <tr><td>Revenue</td><td>$1,200k</td><td>$1,425k</td></tr>
+            <tr><td>Hive replacement costs</td><td>($400k)</td><td>($100k)</td></tr>
+            <tr><td>Total costs</td><td>($1,000k)</td><td>($813k)</td></tr>
+            <tr class="highlight"><td>Total Margin</td><td>$200k</td><td>$613k</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="impact-note">PollenPal cost not included. Source: Beekeeper interviews, USDA NASS honey report, ABJ, Bee Informed Partnership, PollenPal analysis.</p>
+      <div class="data-callout">"By digitizing apiaries, we're collecting data unobtainable any other way. Our models compound in accuracy with every bee we see."</div>
+    </div>
+  </section>
+
+  <!-- TRACTION -->
+  <section class="section traction">
+    <div class="wrap">
+      <div class="eyebrow center">Traction</div>
+      <h2 style="text-align:center;margin-bottom:48px;">Pilot-ready and proven in the field.</h2>
+      <div class="stat-strip">
+        <div class="stat"><div class="stat-num">20k+</div><div class="stat-label">Field images trained</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Pilots committed (CT, NY, CA)</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">Hardware iterations</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Master Beekeeper advisors</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITIVE QUADRANT -->
+  <section class="section bg-cream">
+    <div class="wrap">
+      <div class="eyebrow center">Competitive position</div>
+      <h2 style="text-align:center;margin:0 auto 48px;max-width:880px;">Accuracy <span class="serif-italic">and</span> deployability. Not one or the other.</h2>
+      <div class="quadrant">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="540" x2="560" y2="540" stroke="#0A0A0A" stroke-width="1.5"/>
+          <line x1="60" y1="540" x2="60" y2="40" stroke="#0A0A0A" stroke-width="1.5"/>
+          <text class="axis-label" x="310" y="580" text-anchor="middle">Easier to deploy at scale →</text>
+          <text class="axis-label" x="40" y="290" text-anchor="middle" transform="rotate(-90 40 290)">Actionable insights →</text>
+          <circle class="competitor-marker" cx="180" cy="440" r="14"/>
+          <text class="competitor" x="200" y="445">Manual inspection</text>
+          <circle class="competitor-marker" cx="420" cy="430" r="14"/>
+          <text class="competitor" x="440" y="435">BroodMinder</text>
+          <circle class="competitor-marker" cx="240" cy="280" r="14"/>
+          <text class="competitor" x="260" y="285">Solution Bee</text>
+          <circle class="competitor-marker" cx="180" cy="180" r="14"/>
+          <text class="competitor" x="200" y="185">Beewise</text>
+          <circle class="pollenpal-marker" cx="460" cy="160" r="22"/>
+          <text class="competitor" x="490" y="166" style="font-size:15px;font-weight:700">PollenPal</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET SIZE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow center">Market opportunity</div>
+      <h2 style="text-align:center;margin-bottom:24px;">Precision agriculture IoT is a <span class="serif-italic">$107B</span> market.</h2>
+      <p class="lede center">PollenPal starts in US hive management and expands into broader pest detection and pollination verification across orchards, vineyards, and greenhouses.</p>
+      <div class="market">
+        <div class="market-ring">
+          <div class="market-circle tam">
+            <div class="mc-num">$107B+</div><div class="mc-label">TAM</div>
+          </div>
+          <h4>Precision Crop Protection</h4>
+          <p>IoT, intervention marketplace, pollination verification, and precision application OS.</p>
+        </div>
+        <div class="market-ring">
+          <div class="market-circle sam">
+            <div class="mc-num">$24B</div><div class="mc-label">SAM</div>
+          </div>
+          <h4>Crop Monitoring + Treatment</h4>
+          <p>Pest detection across orchards, vineyards, and greenhouses plus treatment sales.</p>
+        </div>
+        <div class="market-ring">
+          <div class="market-circle som">
+            <div class="mc-num">$128M</div><div class="mc-label">SOM</div>
+          </div>
+          <h4>US Hive Management</h4>
+          <p>PollenPal hardware and software subscriptions sold to US beekeepers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERSHIPS -->
+  <section class="section bg-cream">
+    <div class="wrap">
+      <div class="eyebrow center">Partnerships</div>
+      <h2 style="text-align:center;margin-bottom:48px;">Two channels to unlock scale with low CAC.</h2>
+      <div class="partnerships-grid">
+        <div class="partnership-card">
+          <h3>Corporate Managed Beekeeping</h3>
+          <p>Corporate beekeeping platforms manage hives across 24+ US cities for corporate clients. PollenPal adds continuous monitoring between beekeeper visits, enabling a premium tech-enabled service tier.</p>
+        </div>
+        <div class="partnership-card">
+          <h3>Honey &amp; Pollinator Brands</h3>
+          <p>Honey and pollinator-focused brands depend on healthy, sustainable hives with supply chain traceability. PollenPal monitors their supply chain apiaries, and the brand subsidizes the cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section roadmap">
+    <div class="wrap">
+      <div class="eyebrow center">Roadmap</div>
+      <h2 style="text-align:center;margin:0 auto 24px;max-width:900px;">From threat detection to <span class="serif-italic">autonomous</span> response.</h2>
+      <div class="timeline" style="margin-top:64px">
+        <div class="tl-stage"><div class="tl-dot"></div><div class="tl-pill">Shipping</div><div class="tl-year">2026</div><h3>Threat Detection</h3><p>Varroa, africanization, and queen issues caught the day they appear.</p></div>
+        <div class="tl-stage"><div class="tl-dot"></div><div class="tl-pill">Shipping</div><div class="tl-year">2026</div><h3>Insightful Recommendations</h3><p>Treatment timing, yard-level trends, and crew dispatch.</p></div>
+        <div class="tl-stage"><div class="tl-dot"></div><div class="tl-pill">R&amp;D</div><div class="tl-year">2027</div><h3>Autonomous Response</h3><p>Closing the loop with in-hive interventions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section bg-cream">
+    <div class="wrap">
+      <div class="eyebrow center">Team</div>
+      <h2 style="text-align:center;margin-bottom:48px;">Deep tech and apiary expertise.</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <h3>Robert Schulte</h3>
+          <div class="role">Co-founder, CEO</div>
+          <p>Ex-BCG, Columbia MBA. UF engineering. 17+ years beekeeping experience. Spent the summer of 2025 interviewing commercial operators across the US.</p>
+        </div>
+        <div class="team-card">
+          <h3>Daniel Drew</h3>
+          <div class="role">Co-founder, CTO</div>
+          <p>Spacecraft Manufacturing Engineer at Apex Space. Ex-Blue Origin. UF engineering. 9-year partnership with Robert.</p>
+        </div>
+        <div class="team-card">
+          <h3>Tech Team</h3>
+          <div class="role">Engineering</div>
+          <p>1 Columbia Research Scientist (computer vision, backed by Google + NVIDIA). 4 Columbia engineering students building the ML pipeline and web app through Columbia Build Lab.</p>
+        </div>
+        <div class="team-card">
+          <h3>Beekeeping Team</h3>
+          <div class="role">Advisory</div>
+          <p>4 Master Beekeeper advisors providing guidance on hive management and treatment protocols. Commercial beekeeper partners deploying devices and contributing field data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTOR CONTACT -->
+  <section id="contact" class="pilot">
+    <div class="wrap">
+      <div class="eyebrow center">Get in touch</div>
+      <h2>Interested in learning more?</h2>
+      <p class="lede">We're seeking seed investment to scale our 2026 commercial pilots and accelerate the data flywheel.</p>
+      <div class="form-card">
+        <form id="invForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe2">
+          <div class="form-row"><label for="i-name">Name *</label><input type="text" id="i-name" name="entry.455027715" required></div>
+          <div class="form-row"><label for="i-email">Email *</label><input type="email" id="i-email" name="entry.414264367" required></div>
+          <div class="form-row"><label for="i-firm">Firm / organization</label><input type="text" id="i-firm" name="entry.119689931"></div>
+          <div class="form-row"><label for="i-msg">Tell us about your interest</label><textarea id="i-msg" name="entry.1292345725"></textarea></div>
+          <button type="submit">Get in touch →</button>
+        </form>
+        <iframe name="hidden_iframe2" style="display:none"></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/images/logo-full.png" alt="PollenPal">
+        <p>Physical AI for commercial apiaries and farms.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/#advantage">Why PollenPal</a></li>
+          <li><a href="/#roadmap">Roadmap</a></li>
+          <li><a href="/#pilot">Request a pilot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#founders">Founders</a></li>
+          <li><a href="/investors">Investors</a></li>
+          <li><a href="/hobbyist">Hobbyist waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@pollenpal.com">hello@pollenpal.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 PollenPal Inc.
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts.js" defer></script>
+</body>
+</html>

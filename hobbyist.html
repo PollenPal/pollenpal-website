@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PollenPal · For backyard beekeepers</title>
+  <meta name="description" content="PollenPal's backyard version: WiFi setup, AI photo diagnosis, and live beekeeper chat. Join the waitlist.">
+  <link rel="icon" href="/images/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .hero { position: relative; padding: 96px 0 120px; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; top: 0; right: -15%;
+      width: 60%; height: 100%;
+      background: radial-gradient(ellipse at center, var(--cream-soft) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative; display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .hero h1 { margin-bottom: 28px; }
+    .hero .lede { margin-bottom: 40px; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .visual-frame {
+      position: relative; width: 100%; max-width: 440px; aspect-ratio: 4/5;
+      border-radius: var(--radius-lg); overflow: hidden; background: var(--ink);
+      box-shadow: 0 30px 80px -20px rgba(10,10,10,0.25), 0 8px 20px -6px rgba(10,10,10,0.12);
+    }
+    .visual-frame video { width: 100%; height: 100%; object-fit: cover; }
+    .visual-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55) 100%); pointer-events: none; }
+    @media (max-width: 960px) {
+      .hero { padding: 56px 0 80px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .visual-frame { max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="PollenPal"></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="/#how">How it works</a>
+      <a href="/#advantage">Why PollenPal</a>
+      <a href="/hobbyist" class="current">Hobbyist</a>
+      <a href="/investors">Investors</a>
+    </nav>
+    <a href="#waitlist" class="nav-cta">Join the waitlist →</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">For backyard beekeepers</div>
+        <h1>Your 5 hives deserve more than <span class="serif-italic">annual</span> inspections.</h1>
+        <p class="lede">PollenPal's backyard version plugs into your home WiFi and power. Get alerts the moment something's wrong, and talk to a real beekeeper when you need one.</p>
+        <a href="#waitlist" class="btn btn-primary">Join the waitlist →</a>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-frame">
+          <video autoplay muted loop playsinline poster="/images/hero-poster.jpg"><source src="/images/hero.mp4" type="video/mp4"></video>
+          <div class="visual-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S DIFFERENT -->
+  <section class="section how">
+    <div class="wrap">
+      <div class="eyebrow center">Built for backyard beekeeping</div>
+      <h2>Designed for hobbyists, not for fleets.</h2>
+      <div class="how-grid">
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">SETUP</div>
+            <h3>Plugs into your house</h3>
+            <p>Home WiFi and a regular power outlet. No solar panels, no LTE, no cellular plan. You can have it running in minutes.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">SUPPORT</div>
+            <h3>Snap a photo, get a diagnosis</h3>
+            <p>The AI assistant tells you what you're looking at. When you need a real human, the optional live beekeeper chat connects you with someone who's seen it before.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">SHARE</div>
+            <h3>Live stream your hive</h3>
+            <p>Share your hive entrance with friends, your local bee club, or the internet. Watching bees come and go is one of the best parts of beekeeping.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH AND SHARE -->
+  <section class="section bg-cream how">
+    <div class="wrap">
+      <div class="eyebrow center">Watch and share</div>
+      <h2 style="text-align:center;margin-bottom:24px;">Bring your hive to the couch.</h2>
+      <p class="lede center" style="margin-bottom:64px;">PollenPal turns your phone into a window into the colony. Open the app from work, from your kitchen, from your friend's backyard. Your hive is right there.</p>
+
+      <div class="how-grid">
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">LIVE</div>
+            <h3>24/7 entrance feed</h3>
+            <p>A live stream of every bee coming and going. Watch the morning rush, the evening calm, the foragers piling in on a good goldenrod day. Real time, every day, no schedule.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">INSIDE</div>
+            <h3>Look inside the hive</h3>
+            <p>Scheduled views from inside the box. See the brood pattern grow, the queen lay, the drones wander. All without opening the lid and stressing the colony.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <div class="step-num">SHARE</div>
+            <h3>Send the moments worth showing off</h3>
+            <p>Save a clip, send a swarm capture to your bee club, post a 30-second loop of forager traffic. Your hive, your audience. The best part of beekeeping made easy to share.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial" style="background-image:none;background:var(--cream-soft);">
+    <div class="wrap" style="position:relative;z-index:1;">
+      <blockquote style="color:var(--ink);">"For my first 4 years, I spent $600 on lost hives, and I didn't know why I was losing them."</blockquote>
+      <cite style="color:var(--gold-dark);">Karen · Backyard beekeeper, South Florida</cite>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section id="waitlist" class="pilot">
+    <div class="wrap">
+      <div class="eyebrow center">Join the waitlist</div>
+      <h2>Be first when the backyard version ships.</h2>
+      <p class="lede">We're starting limited shipments of the backyard PollenPal in 2026. Get on the list and we'll let you know when it's your turn.</p>
+      <div class="form-card">
+        <form id="hobForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe3">
+          <div class="form-row"><label for="h-name">Name *</label><input type="text" id="h-name" name="entry.455027715" required></div>
+          <div class="form-row"><label for="h-email">Email *</label><input type="email" id="h-email" name="entry.414264367" required></div>
+          <div class="form-row"><label for="h-hives">Number of hives</label><input type="text" id="h-hives" name="entry.355024465"></div>
+          <div class="form-row"><label for="h-msg">Anything you'd like us to know</label><textarea id="h-msg" name="entry.1292345725"></textarea></div>
+          <button type="submit">Join the waitlist →</button>
+        </form>
+        <iframe name="hidden_iframe3" style="display:none"></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/images/logo-full.png" alt="PollenPal">
+        <p>Physical AI for commercial apiaries and farms.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/#advantage">Why PollenPal</a></li>
+          <li><a href="/#roadmap">Roadmap</a></li>
+          <li><a href="/#pilot">Request a pilot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#founders">Founders</a></li>
+          <li><a href="/investors">Investors</a></li>
+          <li><a href="/hobbyist">Hobbyist waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@pollenpal.com">hello@pollenpal.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 PollenPal Inc.
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts.js" defer></script>
+</body>
+</html>
