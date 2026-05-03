@@ -521,6 +521,51 @@
       </ol>
     </section>
 
+    <section id="risks">
+      <div class="memo-eyebrow">[10] · Challenges &amp; Risks</div>
+      <h2>Four candid risks, each with a specific mitigation.</h2>
+      <p class="thesis-lead">Model accuracy at scale, hardware reliability in the field, regulatory shifts on treatments, and channel concentration on partnerships. Each is a real risk; each has a specific, funded, time-boxed mitigation tied to the roadmap or use of funds.</p>
+
+      <div class="risk-grid">
+        <div class="risk-card is-risk">
+          <span class="risk-tag">Technical</span>
+          <p><strong>Model accuracy at scale.</strong> Lab-trained YOLO models degrade in the field. Conditions vary across yards (lighting, hive density, bee phenotype). Flagging is not the same as ground-truth.</p>
+        </div>
+        <div class="risk-card is-mit">
+          <span class="mit-tag">Mitigation</span>
+          <p>Active labeling pipeline (CVAT) running on production data weekly. A calibration ridge regression model is in development on the <code>feat/calibration-model</code> branch, mapping detection signals to inspection logs. Each pilot delivers ground-truth labels to compound model accuracy.</p>
+        </div>
+        <div class="risk-card is-risk">
+          <span class="risk-tag">Hardware</span>
+          <p><strong>Outdoor IoT in hives is brutal.</strong> Dust, propolis, moisture, and 100°F temperature swings break sensors. A device that fails in month 8 is a churn event.</p>
+        </div>
+        <div class="risk-card is-mit">
+          <span class="mit-tag">Mitigation</span>
+          <p>12 design iterations already completed. $240K of the pre-seed round is allocated specifically to IP67 enclosure, FCC certification, and ~700 production devices (<a href="#ask" class="xref">§12 Ask</a>). 5 percent annual hardware failure rate is baked into the financial model — we are not pretending the problem doesn't exist.</p>
+        </div>
+        <div class="risk-card is-risk">
+          <span class="risk-tag">Regulatory</span>
+          <p><strong>EPA varroa treatment registration shifts.</strong> Oxalic acid, formic acid, and other miticide registrations change periodically. A regulatory change to recommended treatments could disrupt customer protocols.</p>
+        </div>
+        <div class="risk-card is-mit">
+          <span class="mit-tag">Mitigation</span>
+          <p>Treatment-agnostic alerting. We surface threats; the customer chooses the treatment. The partnership rev-share model also keeps PollenPal out of chemical-application liability — the corporate platform owns the customer relationship and the treatment decision.</p>
+        </div>
+        <div class="risk-card is-risk">
+          <span class="risk-tag">Market / Channel</span>
+          <p><strong>Channel concentration.</strong> ~1,600 U.S. commercial operators is a small TAM if we stay in hive management only. Two corporate beekeeping partners (Best Bees, Alvéole) carry meaningful channel risk.</p>
+        </div>
+        <div class="risk-card is-mit">
+          <span class="mit-tag">Mitigation</span>
+          <p>The roadmap explicitly extends from $128M SOM into the $24B precision farming SAM (<a href="#roadmap" class="xref">§7 Scale phase</a>). This is on the calendar, not blue-sky. Three pilots are also in three different states with three different operator profiles, reducing concentration in the Search phase.</p>
+        </div>
+      </div>
+
+      <ol class="footnote-list">
+        <li id="fn-10-1">¹ All risk-mitigation tie-ins are referenced in <a href="#ask" class="xref">§12 Ask</a> (use of funds) or <a href="#roadmap" class="xref">§7 Roadmap</a>. <a href="#fnref-10-1">↩</a></li>
+      </ol>
+    </section>
+
   </main>
 </div>
 
