@@ -159,6 +159,43 @@
       </ol>
     </section>
 
+    <section id="solution">
+      <div class="memo-eyebrow">[03] · Solution &amp; Product</div>
+      <h2>Computer vision on every hive entrance.</h2>
+      <p class="thesis-lead">We put computer vision on every hive entrance and surface threats the day they appear, instead of weeks later during manual inspection.</p>
+
+      <p>Three integrated layers — hardware, machine learning, and a beekeeper-facing web app — replace the fortnightly inspection visit with continuous monitoring.</p>
+
+      <div class="solution-strip">
+        <figure>
+          <img src="/images/device-grass.jpg" alt="PollenPal device deployed on a hive in the field">
+          <figcaption>Hardware monitors every bee in and out of the hive</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/ml-detection.jpg" alt="ML pipeline detecting and tracking individual bees">
+          <figcaption>YOLO model flags varroa, africanization, queen issues</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/dashboard-phone.jpg" alt="Mobile dashboard with hive-level alerts">
+          <figcaption>Hive-level alerts, multi-yard views</figcaption>
+        </figure>
+      </div>
+
+      <h3>Hardware</h3>
+      <p>Off-the-shelf IoT compute and sensors with a sub-$100 BOM target.<sup class="fn-ref"><a href="#fn-3-1" id="fnref-3-1">¹</a></sup> A 3D-printed skeleton fits standard 10-frame Langstroth boxes — no custom hive bodies — and integrates sound sensors plus external switches for labor coordination. Solar plus LTE for remote yards. Twelve design iterations have gone through commercial-yard testing in South Florida.</p>
+
+      <h3>Machine Learning</h3>
+      <p>YOLO11 trained on 250,000+ field images, annotated through our CVAT pipeline.<sup class="fn-ref"><a href="#fn-3-2" id="fnref-3-2">²</a></sup> The model tracks colony activity in real time and flags varroa mites, africanization markers, and missing-queen indicators. Cloud inference today; on-prem GPU on the roadmap (<a href="#ask" class="xref">funded by §12 Ask</a>) for 80 percent inference cost cut and sub-second latency.</p>
+
+      <h3>Web App</h3>
+      <p>Hive-level alerts, multi-yard rollups, and review queues. Designed with beekeeper input — actionable insights over complex graphs. Recordkeeping, harvest logging, and supply ordering are integrated to displace the spreadsheets and notebook columns we found in every yard we visited. The data flywheel from this product is what compounds (<a href="#competition" class="xref">see §6 Competition</a>).</p>
+
+      <ol class="footnote-list">
+        <li id="fn-3-1">¹ PollenPal analysis. Sub-$100 BOM target reflects supplier quotes at 700-unit production volume; further reductions modeled at 10,000-unit scale. <a href="#fnref-3-1">↩</a></li>
+        <li id="fn-3-2">² Internal training pipeline; 250,000+ images captured across South Florida pilot 2025-2026, annotated via CVAT (<a href="https://13.58.185.121:8080">internal CVAT instance</a>). <a href="#fnref-3-2">↩</a></li>
+      </ol>
+    </section>
+
   </main>
 </div>
 
