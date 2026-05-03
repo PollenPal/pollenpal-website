@@ -1378,3 +1378,60 @@ sup.fn-ref a:hover { text-decoration: underline; }
   margin-bottom: 28px;
   max-width: 640px;
 }
+
+/* ============================================================
+   PRINT STYLES (memo-only PDF export via Ctrl+P)
+============================================================ */
+@media print {
+  body.memo-body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+    cursor: auto;
+  }
+  .site-header, .toc-rail, .toc-mobile-toggle, .toc-mobile-list,
+  .nav-toggle, .nav-cta, .skip-link, .nav-links { display: none !important; }
+  .conf-banner {
+    position: static;
+    background: #000;
+    color: #fff;
+    padding: 6px 0;
+    font-size: 9pt;
+  }
+  .memo-shell {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 0;
+  }
+  .memo-main { max-width: none; }
+  .memo-main > section {
+    break-inside: avoid;
+    padding: 24px 0;
+    border-top: 1px solid #000;
+  }
+  .memo-main > section:first-of-type { border-top: 0; }
+  .memo-eyebrow { color: #000; }
+  .thesis-lead { border-left-color: #000; }
+  .stat-callout, .chart-frame, .memo-table, .risk-card,
+  .memo-team-card, .next-step, .appendix-section { break-inside: avoid; }
+  a { color: #000; text-decoration: underline; }
+  .footnote-list a { text-decoration: none; }
+  .site-footer .footer-grid { display: none; }
+  .site-footer .footer-bottom {
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid #000;
+    font-size: 9pt;
+  }
+  /* Force colors for charts (browsers strip backgrounds by default) */
+  svg .bar-fill { fill: #C2851A !important; }
+  svg .line-stroke { stroke: #C2851A !important; }
+}
+@page {
+  margin: 18mm 14mm;
+  @bottom-center {
+    content: "© 2026 PollenPal Inc. · Page " counter(page) " of " counter(pages);
+    font-size: 9pt;
+    color: #666;
+  }
+}
