@@ -848,3 +848,234 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   text-transform: uppercase;
   color: var(--gold-dark);
 }
+
+/* ============================================================
+   INVESTOR MEMO (long-form /investors page)
+   Components below ONLY apply on body.memo-body
+============================================================ */
+
+.memo-body { background: var(--bg); }
+
+/* ----- Confidential banner ----- */
+.conf-banner {
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  position: sticky;
+  top: 72px;
+  z-index: 90;
+}
+.conf-banner .wrap { display: flex; align-items: center; gap: 10px; }
+.conf-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ----- Memo shell: TOC + main side-by-side ----- */
+.memo-shell {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 96px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ----- Sticky TOC rail ----- */
+.toc-rail {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+}
+.toc-progress {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--gold-dark);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.1s linear;
+}
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.toc-list li { margin-bottom: 14px; }
+.toc-list a {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  color: var(--muted);
+  padding: 4px 0;
+  border-left: 3px solid transparent;
+  margin-left: -27px;
+  padding-left: 24px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.toc-list a:hover { color: var(--ink-soft); }
+.toc-list a.active {
+  color: var(--ink);
+  border-left-color: var(--gold-dark);
+  font-weight: 700;
+}
+.toc-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-size: 11px;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+/* ----- Mobile TOC dropdown ----- */
+.toc-mobile-toggle {
+  display: none;
+  position: sticky;
+  top: 110px;
+  z-index: 80;
+  width: 100%;
+  background: var(--bg);
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 14px var(--gutter);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.toc-mobile-list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 152px;
+  z-index: 79;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.toc-mobile-list li { border-top: 1px solid var(--line); }
+.toc-mobile-list li:first-child { border-top: 0; }
+.toc-mobile-list a {
+  display: block;
+  padding: 12px var(--gutter);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.toc-mobile-list.open { display: block; }
+
+/* ----- Main column ----- */
+.memo-main { max-width: 760px; }
+.memo-main > section { padding: 64px 0; border-top: 1px solid var(--line); }
+.memo-main > section:first-of-type { padding-top: 0; border-top: 0; }
+
+/* ----- Eyebrow numeral pattern ----- */
+.memo-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+  font-variant-numeric: tabular-nums;
+}
+.memo-eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--gold-dark);
+}
+
+/* ----- Thesis lead (one-sentence section opener) ----- */
+.thesis-lead {
+  font-size: 21px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--ink);
+  border-left: 3px solid var(--gold-dark);
+  padding-left: 20px;
+  margin: 0 0 32px;
+  max-width: 680px;
+}
+
+/* ----- Section h2 (smaller than landing-page h2) ----- */
+.memo-main h2 {
+  font-size: clamp(28px, 3.2vw, 40px);
+  margin-bottom: 16px;
+}
+.memo-main h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 32px 0 12px;
+}
+.memo-main p { margin-bottom: 18px; max-width: 680px; }
+.memo-main p:last-child { margin-bottom: 0; }
+
+/* ----- Cross-link styling ----- */
+.xref {
+  color: var(--gold-dark);
+  border-bottom: 1px dotted rgba(194, 133, 26, 0.35);
+  transition: border-color 0.15s;
+}
+.xref:hover { border-bottom-color: var(--gold-dark); }
+
+/* ----- Footnote markers + endnote list ----- */
+sup.fn-ref {
+  font-size: 11px;
+  vertical-align: super;
+  line-height: 0;
+}
+sup.fn-ref a { color: var(--gold-dark); font-weight: 600; }
+sup.fn-ref a:hover { text-decoration: underline; }
+
+.footnote-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  font-style: italic;
+}
+.footnote-list li { margin-bottom: 6px; max-width: 680px; }
+.footnote-list li:target {
+  background: var(--cream-soft);
+  font-style: normal;
+}
+.footnote-list a { color: var(--gold-dark); font-style: normal; }
+
+/* ----- Responsive ----- */
+@media (max-width: 1100px) {
+  .memo-shell {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 24px;
+  }
+  .toc-rail { display: none; }
+  .toc-mobile-toggle { display: block; }
+}
+@media (max-width: 600px) {
+  .memo-main > section { padding: 48px 0; }
+  .thesis-lead { font-size: 18px; padding-left: 16px; }
+}
