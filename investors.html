@@ -363,6 +363,118 @@
       </ol>
     </section>
 
+    <section id="financials">
+      <div class="memo-eyebrow">[08] · Financial Overview</div>
+      <h2>$40K to $4.6M revenue, 2026 to 2030.</h2>
+      <p class="thesis-lead">Revenue scales from $40K (2026) to $4.6M (2030); EBIT margin moves from -201 percent to +41 percent over the same window, supported by hardware BOM falling $46 to $18 and ARPU rising as feature stack matures.<sup class="fn-ref"><a href="#fn-8-1" id="fnref-8-1">¹</a></sup></p>
+
+      <h3>5-year P&amp;L summary</h3>
+      <div class="memo-table-wrap">
+        <table class="memo-table">
+          <thead>
+            <tr><th></th><th>2026</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Revenue</td><td>$40K</td><td>$172K</td><td>$653K</td><td>$1,947K</td><td>$4,648K</td></tr>
+            <tr><td>Gross profit</td><td>$17K</td><td>$95K</td><td>$410K</td><td>$1,305K</td><td>$3,285K</td></tr>
+            <tr><td>Gross margin %</td><td>44%</td><td>56%</td><td>63%</td><td>67%</td><td>71%</td></tr>
+            <tr><td>Operating expenses</td><td>($97K)</td><td>($259K)</td><td>($526K)</td><td>($958K)</td><td>($1,390K)</td></tr>
+            <tr class="total"><td>EBIT</td><td>($80K)</td><td>($164K)</td><td>($116K)</td><td>$347K</td><td>$1,895K</td></tr>
+            <tr><td>EBIT margin %</td><td>(201%)</td><td>(95%)</td><td>(18%)</td><td>18%</td><td>41%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-frame">
+        <div class="chart-title">Revenue ramp 2026–2030</div>
+        <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Revenue ramp from $40K in 2026 to $4.6M in 2030">
+          <!-- Baseline -->
+          <line x1="40" y1="240" x2="580" y2="240" stroke="#EAEAEA" stroke-width="1"/>
+          <!-- Bars (max value $4,648 → 200px tall) -->
+          <!-- 2026 $40K -->
+          <rect class="bar-fill" x="80"  y="238" width="60" height="2"   fill="#E8A43A"/>
+          <text x="110" y="232" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">$40K</text>
+          <text x="110" y="262" text-anchor="middle" font-size="12" fill="#3A3A3A">2026</text>
+          <!-- 2027 $172K -->
+          <rect class="bar-fill" x="180" y="231" width="60" height="9"   fill="#E8A43A"/>
+          <text x="210" y="225" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">$172K</text>
+          <text x="210" y="262" text-anchor="middle" font-size="12" fill="#3A3A3A">2027</text>
+          <!-- 2028 $653K -->
+          <rect class="bar-fill" x="280" y="212" width="60" height="28"  fill="#E8A43A"/>
+          <text x="310" y="206" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">$653K</text>
+          <text x="310" y="262" text-anchor="middle" font-size="12" fill="#3A3A3A">2028</text>
+          <!-- 2029 $1,947K -->
+          <rect class="bar-fill" x="380" y="156" width="60" height="84"  fill="#E8A43A"/>
+          <text x="410" y="150" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">$1.95M</text>
+          <text x="410" y="262" text-anchor="middle" font-size="12" fill="#3A3A3A">2029</text>
+          <!-- 2030 $4,648K -->
+          <rect class="bar-fill" x="480" y="40"  width="60" height="200" fill="#E8A43A"/>
+          <text x="510" y="34"  text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">$4.65M</text>
+          <text x="510" y="262" text-anchor="middle" font-size="12" fill="#3A3A3A">2030</text>
+          <!-- First profitable year annotation -->
+          <line x1="370" y1="20" x2="370" y2="240" stroke="#C2851A" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="365" y="16" text-anchor="end" font-size="10" font-style="italic" fill="#C2851A">First profitable year →</text>
+        </svg>
+        <div class="chart-caption">Source: PollenPal Business Model v8. Assumes commercial cohort 16 / 22 / 28 / 34 / 40 farms by year, 0.7%/mo churn, ARPU $4 → $6 over 5 years. Hobbyist cohort 50 / 200 / 600 / 1,500 / 3,500.</div>
+      </div>
+
+      <div class="chart-frame">
+        <div class="chart-title">Gross margin scales as hardware cost falls</div>
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gross margin rises 44% to 71% while hardware BOM falls $46 to $18">
+          <!-- Y axes: GM% on left (0-80%), HW $ on right (0-50) -->
+          <line x1="40" y1="200" x2="560" y2="200" stroke="#EAEAEA" stroke-width="1"/>
+          <!-- Year labels -->
+          <text x="100" y="222" text-anchor="middle" font-size="12" fill="#3A3A3A">2026</text>
+          <text x="200" y="222" text-anchor="middle" font-size="12" fill="#3A3A3A">2027</text>
+          <text x="300" y="222" text-anchor="middle" font-size="12" fill="#3A3A3A">2028</text>
+          <text x="400" y="222" text-anchor="middle" font-size="12" fill="#3A3A3A">2029</text>
+          <text x="500" y="222" text-anchor="middle" font-size="12" fill="#3A3A3A">2030</text>
+          <!-- HW cost bars (light gold tint, height = $ × 3) -->
+          <rect x="80"  y="62"  width="40" height="138" fill="#FFECB7"/>
+          <rect x="180" y="98"  width="40" height="102" fill="#FFECB7"/>
+          <rect x="280" y="116" width="40" height="84"  fill="#FFECB7"/>
+          <rect x="380" y="134" width="40" height="66"  fill="#FFECB7"/>
+          <rect x="480" y="146" width="40" height="54"  fill="#FFECB7"/>
+          <text x="100" y="58"  text-anchor="middle" font-size="11" fill="#0A0A0A">$46</text>
+          <text x="200" y="94"  text-anchor="middle" font-size="11" fill="#0A0A0A">$34</text>
+          <text x="300" y="112" text-anchor="middle" font-size="11" fill="#0A0A0A">$28</text>
+          <text x="400" y="130" text-anchor="middle" font-size="11" fill="#0A0A0A">$22</text>
+          <text x="500" y="142" text-anchor="middle" font-size="11" fill="#0A0A0A">$18</text>
+          <!-- GM% line (44, 56, 63, 67, 71 → y = 200 - %×2) -->
+          <polyline class="line-stroke" points="100,112 200,88 300,74 400,66 500,58" fill="none" stroke="#C2851A" stroke-width="2.5"/>
+          <circle cx="100" cy="112" r="4" fill="#C2851A"/>
+          <circle cx="200" cy="88"  r="4" fill="#C2851A"/>
+          <circle cx="300" cy="74"  r="4" fill="#C2851A"/>
+          <circle cx="400" cy="66"  r="4" fill="#C2851A"/>
+          <circle cx="500" cy="58"  r="4" fill="#C2851A"/>
+          <text x="100" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#C2851A">44%</text>
+          <text x="200" y="82"  text-anchor="middle" font-size="11" font-weight="700" fill="#C2851A">56%</text>
+          <text x="300" y="68"  text-anchor="middle" font-size="11" font-weight="700" fill="#C2851A">63%</text>
+          <text x="400" y="60"  text-anchor="middle" font-size="11" font-weight="700" fill="#C2851A">67%</text>
+          <text x="500" y="52"  text-anchor="middle" font-size="11" font-weight="700" fill="#C2851A">71%</text>
+          <!-- Legend -->
+          <rect x="40" y="14" width="12" height="12" fill="#FFECB7"/>
+          <text x="58" y="24" font-size="11" fill="#3A3A3A">HW cost per device</text>
+          <line x1="200" y1="20" x2="218" y2="20" stroke="#C2851A" stroke-width="2.5"/>
+          <text x="226" y="24" font-size="11" fill="#3A3A3A">Gross margin %</text>
+        </svg>
+        <div class="chart-caption">Source: PollenPal Business Model v8. HW cost reflects supplier quotes at 700 → 10,000 unit scale. Gross margin includes cloud, support, and amortized HW per hive.</div>
+      </div>
+
+      <h3>Key assumptions, named</h3>
+      <p><strong>Cohort.</strong> Commercial farms cumulative: 16 / 22 / 28 / 34 / 40 over 2026-2030. 1,500 hives per commercial farm (industry standard). Hobbyist cohort 50 / 200 / 600 / 1,500 / 3,500.</p>
+      <p><strong>Pricing.</strong> ARPU $4 → $6 per hive per month commercial; $8 → $12 hobbyist; $20 partnership rev-share. $2,500 one-time setup commercial.</p>
+      <p><strong>Churn.</strong> 0.7 percent monthly across both segments. This is best-in-class for B2B SaaS<sup class="fn-ref"><a href="#fn-8-2" id="fnref-8-2">²</a></sup> — call it out as optimistic for hobbyist; pilot data will calibrate.</p>
+      <p><strong>Ramp.</strong> 15 percent first-year revenue capture, rising to 100 percent by Yr 4 as deployments mature.</p>
+      <p><strong>HW BOM.</strong> $46 in 2026 falling to $18 by 2030, driven by supplier scale curves at 700 → 10,000 units.</p>
+      <p><strong>CAC.</strong> High initial CAC for commercial direct sales, offset by $72K ACV. Partnership channel rev-share bypasses CAC. Hobbyist self-serve targets sub-12-month payback.</p>
+
+      <ol class="footnote-list">
+        <li id="fn-8-1">¹ PollenPal Business Model v8 (file: <code>PollenPal Business Model v8.xlsx</code>). All figures derived from named assumptions in the Assumptions tab. <a href="#fnref-8-1">↩</a></li>
+        <li id="fn-8-2">² Churnfree, <em>B2B SaaS Benchmarks 2026</em>. Best-in-class B2B SaaS monthly churn is below 1 percent; SMB-focused products typically run 3-7 percent monthly. <a href="https://churnfree.com/blog/b2b-saas-churn-rate-benchmarks/">churnfree.com</a> <a href="#fnref-8-2">↩</a></li>
+      </ol>
+    </section>
+
   </main>
 </div>
 
