@@ -639,6 +639,51 @@
       </div>
     </section>
 
+    <section id="appendix">
+      <div class="memo-eyebrow">[13] · Appendix</div>
+      <h2>Optional deep-dives.</h2>
+      <p class="thesis-lead">Customer story, unit economics, hardware/ML detail, and primary research methodology. Each section is collapsed by default; expand the ones relevant to your diligence.</p>
+
+      <details class="appendix-section">
+        <summary>A. Customer story — Wendy, Ventura, CA</summary>
+        <div class="appendix-body">
+          <p>Wendy Mather runs Blue Ridge Honey Co. in Ventura, CA — a 5,000-colony commercial operation specializing in pollination contracts. Africanization is a $100K/year line item by her own estimate: africanized swarms force her crew to abandon affected yards, lose pollination revenue, and replace queens.</p>
+          <p>From an interview in July 2025: <em>"Identifying and treating africanization early would be worth $100K a year to our operation."</em> Mites and queen issues compound on top — a typical Wendy yard loses 30-40 percent of colonies in a bad year, and recovery means buying replacement packages at $200/colony plus labor.</p>
+          <p>Wendy is one of our 3 committed pilot operators for 2026. She has agreed to share inspection logs and ground-truth treatment outcomes throughout the pilot, which compounds directly into the calibration model (<a href="#risks" class="xref">§10 Technical mitigation</a>).</p>
+        </div>
+      </details>
+
+      <details class="appendix-section">
+        <summary>B. Unit economics deep dive</summary>
+        <div class="appendix-body">
+          <p><strong>Per-hive contribution margin walk (Year 1 commercial).</strong></p>
+          <p>Revenue: $4/hive/mo × 12 = <strong>$48 ARPU Yr 1</strong> (rising to $72 by Yr 5 as feature stack matures).<br>
+          Cloud cost: $1.50/hive/mo declining to $0.75/hive/mo as inference moves on-prem = <strong>$18/yr</strong> (Yr 1).<br>
+          Hardware amortized: $46 BOM ÷ 3-year life = $15.33/yr per device. Commercial deployment uses 0.33 devices per hive (one device per 3 hives). <strong>$5.11/yr HW per hive.</strong><br>
+          Implied Yr-1 contribution margin: ~$25/hive after cloud, support, and amortized HW. Setup ($2,500) and direct sales overhead are absorbed at the farm level, not the hive.</p>
+          <p><strong>LTV / CAC and payback period</strong> will be confirmed once the first paid commercial deployment lands in Q3 2026 (<a href="#traction" class="xref">§9 Traction</a>). Modeled CAC payback: under 18 months for commercial; under 12 months target for hobbyist self-serve.</p>
+        </div>
+      </details>
+
+      <details class="appendix-section">
+        <summary>C. Hardware / ML technical detail</summary>
+        <div class="appendix-body">
+          <p><strong>Hardware.</strong> Pi-class compute (Raspberry Pi or equivalent). Imaging stack inspired by proven CV techniques optimized for low-power, high-throughput capture. MLX90640 thermal sensor, camera, sound sensor (I2S mic), external switches for labor coordination. 3D-printed skeleton, 12 design variations tested. Solar panel + LTE for remote yards.</p>
+          <p><strong>ML pipeline.</strong> YOLO11 architecture (Ultralytics). 250,000+ images annotated through CVAT (self-hosted instance, t3.2xlarge). Two-stage detection (bee + pose → crop → mite detection), mAP50 = 0.896 at last training run. Cloud inference today (FastAPI + RDS Postgres on AWS), on-prem GPU on the roadmap.</p>
+          <p><strong>Calibration model.</strong> Ridge regression maps detection signals (entrance counts, pose distributions, behavior anomalies) to inspection ground truth (alcohol-wash mite counts, queen status, africanization assessments). Active development branch <code>feat/calibration-model</code>.</p>
+        </div>
+      </details>
+
+      <details class="appendix-section">
+        <summary>D. Primary research methodology</summary>
+        <div class="appendix-body">
+          <p>50+ semi-structured interviews conducted in summer 2025 via cross-country road trip plus phone calls. Sample selection: commercial operators with 500+ hives, plus a smaller number of large hobbyist operations, across CA, TX, FL, CO, and NY.</p>
+          <p>Interview structure: open-ended on current pain points, hive management workflow, treatment protocols, and digital tooling adoption. Closed-ended on willingness to pay and current spend on diagnostics.</p>
+          <p>4 Master Beekeepers retained as ongoing advisors after the road trip (combined ~80 years commercial experience). Pull quotes throughout the memo (Kristen, §2; Wendy, §13A) are from this primary research dataset.</p>
+        </div>
+      </details>
+    </section>
+
   </main>
 </div>
 
