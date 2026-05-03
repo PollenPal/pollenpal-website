@@ -1079,3 +1079,302 @@ sup.fn-ref a:hover { text-decoration: underline; }
   .memo-main > section { padding: 48px 0; }
   .thesis-lead { font-size: 18px; padding-left: 16px; }
 }
+
+/* ----- Stat callout grid + cards ----- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+.stat-callout {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--bg);
+}
+.stat-callout .stat-num {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.stat-callout .stat-rule {
+  width: 32px;
+  height: 2px;
+  background: var(--gold-dark);
+  margin: 12px 0 10px;
+}
+.stat-callout .stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ----- Pull quote (Instrument Serif italic, used sparingly) ----- */
+.pull-quote {
+  margin: 40px 0;
+  padding: 32px 40px;
+  border-left: 3px solid var(--gold-dark);
+  background: var(--cream-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.pull-quote blockquote {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.pull-quote cite {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+}
+
+/* ----- Memo table ----- */
+.memo-table-wrap {
+  margin: 24px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.memo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.memo-table th, .memo-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.memo-table th {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--ink);
+}
+.memo-table td:first-child { font-weight: 600; color: var(--ink-soft); }
+.memo-table tr.total td {
+  border-top: 1px solid var(--ink);
+  font-weight: 700;
+  color: var(--ink);
+}
+.memo-table tr.highlight td {
+  background: var(--cream-soft);
+  font-weight: 700;
+  color: var(--ink);
+}
+.memo-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ----- Chart frame ----- */
+.chart-frame {
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px 20px;
+  background: var(--bg);
+}
+.chart-frame .chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 18px;
+  letter-spacing: 0.2px;
+}
+.chart-frame .chart-caption {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ----- Risk callout pairs ----- */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+.risk-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+.risk-card.is-risk { background: var(--bg); }
+.risk-card.is-mit { background: var(--cream-soft); border-color: transparent; }
+.risk-tag {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.mit-tag {
+  display: inline-block;
+  background: var(--gold-dark);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.risk-card p { font-size: 14px; line-height: 1.55; margin: 0; max-width: none; }
+@media (max-width: 760px) {
+  .risk-grid { grid-template-columns: 1fr; }
+}
+
+/* ----- Roadmap phase table accent strips ----- */
+.roadmap-table th { padding-top: 20px; padding-bottom: 16px; }
+.roadmap-table th.phase-now { box-shadow: inset 0 -3px 0 var(--cream); }
+.roadmap-table th.phase-next { box-shadow: inset 0 -3px 0 var(--gold); }
+.roadmap-table th.phase-later { box-shadow: inset 0 -3px 0 var(--gold-dark); }
+
+/* ----- Solution image strip ----- */
+.solution-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.solution-strip figure { margin: 0; }
+.solution-strip img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+.solution-strip figcaption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 500;
+}
+@media (max-width: 760px) {
+  .solution-strip { grid-template-columns: 1fr; }
+  .solution-strip img { height: 220px; }
+}
+
+/* ----- Team cards (refined for memo) ----- */
+.memo-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+.memo-team-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+.memo-team-card h3 { margin: 0 0 4px; font-size: 17px; }
+.memo-team-card .role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.memo-team-card p { margin: 0; font-size: 14px; line-height: 1.55; max-width: none; }
+@media (max-width: 760px) {
+  .memo-team-grid { grid-template-columns: 1fr; }
+}
+
+/* ----- Use-of-funds + next-steps ----- */
+.next-steps-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  counter-reset: stp;
+}
+.next-step {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+}
+.next-step::before {
+  counter-increment: stp;
+  content: "0" counter(stp);
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 760px) {
+  .next-steps-strip { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .next-steps-strip { grid-template-columns: 1fr; }
+}
+
+/* ----- Appendix collapsibles ----- */
+.appendix-section {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  background: var(--bg);
+}
+.appendix-section summary {
+  padding: 16px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.appendix-section summary::-webkit-details-marker { display: none; }
+.appendix-section summary::after {
+  content: "▸";
+  color: var(--gold-dark);
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+.appendix-section[open] summary::after { transform: rotate(90deg); }
+.appendix-section .appendix-body {
+  padding: 0 20px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ----- Hero block (memo-specific, simpler than landing) ----- */
+.memo-hero h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  margin-bottom: 20px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+.memo-hero .lede {
+  font-size: 19px;
+  margin-bottom: 28px;
+  max-width: 640px;
+}
