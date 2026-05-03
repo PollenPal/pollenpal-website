@@ -44,4 +44,70 @@
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
+
+  // ===== MEMO: TOC ACTIVE-SECTION OBSERVER =====
+  // Highlights the current section in the left-rail TOC as the user scrolls.
+  // Only active on /investors (where .toc-rail exists).
+  const tocRail = document.querySelector('.toc-rail');
+  if (tocRail) {
+    const tocLinks = tocRail.querySelectorAll('a');
+    const sectionMap = new Map();
+    tocLinks.forEach(function (link) {
+      const id = link.getAttribute('href').slice(1);
+      const section = document.getElementById(id);
+      if (section) sectionMap.set(section, link);
+    });
+    const tocObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function (l) { l.classList.remove('active'); });
+          const link = sectionMap.get(entry.target);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+    sectionMap.forEach(function (_link, section) { tocObserver.observe(section); });
+  }
+
+  // ===== MEMO: TOC SCROLL PROGRESS BAR =====
+  const tocProgress = document.querySelector('.toc-progress');
+  const memoMain = document.querySelector('.memo-main');
+  if (tocProgress && memoMain) {
+    let ticking = false;
+    function updateProgress() {
+      const rect = memoMain.getBoundingClientRect();
+      const totalScrollable = memoMain.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const ratio = totalScrollable > 0
+        ? Math.max(0, Math.min(1, scrolled / totalScrollable))
+        : 0;
+      tocProgress.style.transform = 'scaleY(' + ratio + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateProgress();
+  }
+
+  // ===== MEMO: MOBILE TOC DROPDOWN =====
+  const tocMobileToggle = document.querySelector('.toc-mobile-toggle');
+  const tocMobileList = document.querySelector('.toc-mobile-list');
+  if (tocMobileToggle && tocMobileList) {
+    tocMobileToggle.addEventListener('click', function () {
+      const open = tocMobileList.classList.toggle('open');
+      tocMobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Close after navigating to a section
+    tocMobileList.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        tocMobileList.classList.remove('open');
+        tocMobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
 })();
