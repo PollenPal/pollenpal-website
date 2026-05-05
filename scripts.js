@@ -19,6 +19,20 @@
   document.querySelectorAll('form[target^="hidden_iframe"]').forEach(function (form) {
     form.addEventListener('submit', function () {
       setTimeout(function () {
+        // Newsletter form sits inside .footer-newsletter-form-wrap and uses
+        // its own success copy via data attributes.
+        if (form.classList.contains('newsletter-form')) {
+          const wrap = form.closest('.footer-newsletter-form-wrap');
+          if (!wrap) return;
+          const title = form.dataset.successTitle || "You're on the list.";
+          const body = form.dataset.successBody || 'Watch your inbox.';
+          wrap.innerHTML =
+            '<div class="newsletter-success">' +
+            '<h3>' + title + '</h3>' +
+            '<p>' + body + '</p>' +
+            '</div>';
+          return;
+        }
         const card = form.closest('.form-card');
         if (!card) return;
         card.innerHTML =

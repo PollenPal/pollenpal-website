@@ -174,6 +174,24 @@
 
 <footer class="site-footer">
   <div class="wrap">
+
+    <div class="footer-newsletter" id="newsletter">
+      <div class="footer-newsletter-copy">
+        <h3>Stay in touch.</h3>
+        <p>Occasional updates on what we're shipping, what we're learning, and where we'll be in the field. No spam.</p>
+      </div>
+      <div class="footer-newsletter-form-wrap">
+        <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdT98RF4UgkrU8RsYQ9yk9aVOO_F7xNktjant5XbnB6q_x0lQ/formResponse" method="POST" target="hidden_iframe_newsletter" data-success-title="You're on the list." data-success-body="Watch your inbox for occasional updates from PollenPal.">
+          <label class="visually-hidden" for="nl-name">Name</label>
+          <input type="text" id="nl-name" name="entry.1325735936" placeholder="Name" required>
+          <label class="visually-hidden" for="nl-email">Email</label>
+          <input type="email" id="nl-email" name="entry.205724635" placeholder="you@example.com" required>
+          <button type="submit">Subscribe →</button>
+        </form>
+        <iframe name="hidden_iframe_newsletter" style="display:none"></iframe>
+      </div>
+    </div>
+
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-wordmark"><img src="/images/logo-icon.png" alt="">PollenPal</div>
