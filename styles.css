@@ -319,6 +319,26 @@ h3 { font-size: clamp(22px, 2.4vw, 30px); }
   border-color: transparent;
 }
 
+/* Beekeeper login — outlined variant, stays visible on mobile (unlike .nav-cta-ghost) */
+.nav-cta-login {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--line);
+  margin-right: 8px;
+}
+.nav-cta-login:hover {
+  background: var(--cream-soft);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+@media (max-width: 600px) {
+  .nav-cta-login {
+    padding: 9px 12px;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+}
+
 /* ===== STAT/METRIC PRIMITIVES ===== */
 .proof-row {
   display: flex;
