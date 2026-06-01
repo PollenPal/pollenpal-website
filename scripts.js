@@ -17,7 +17,29 @@
   // Google Forms POST into a hidden iframe; we can't read the response,
   // but we can swap the form for a thank-you message after submit.
   document.querySelectorAll('form[target^="hidden_iframe"]').forEach(function (form) {
-    form.addEventListener('submit', function () {
+    form.addEventListener('submit', function (e) {
+      // ===== BOT PROTECTION (runs before the iframe POST) =====
+      // (1) Honeypot: a hidden "company" field humans never see. If a bot
+      //     filled it, silently drop the submission — no alert, since bots
+      //     learn from rejection messages.
+      const honeypot = form.querySelector('input[name="company"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        e.preventDefault();
+        return;
+      }
+      // (2) Cloudflare Turnstile: require a token for THIS form's own widget.
+      //     getResponse is scoped to the widget element so the two widgets on
+      //     a page (waitlist + newsletter) don't cross-wire.
+      const widget = form.querySelector('.cf-turnstile');
+      if (widget) {
+        const token = window.turnstile && window.turnstile.getResponse(widget);
+        if (!token) {
+          e.preventDefault();
+          alert('Please complete the bot check.');
+          return;
+        }
+      }
+      // ===== Passed: let the native POST proceed, then swap in success UI =====
       setTimeout(function () {
         // Newsletter form sits inside .footer-newsletter-form-wrap and uses
         // its own success copy via data attributes.
