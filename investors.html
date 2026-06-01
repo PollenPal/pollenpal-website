@@ -6,6 +6,7 @@
   <title>PollenPal · Investor Memo</title>
   <meta name="description" content="PollenPal investor memo. Physical AI for commercial beekeeping. Seeking $500K pre-seed SAFE.">
   <link rel="icon" href="/images/logo-icon.png">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
@@ -628,10 +629,12 @@
 
       <div class="form-card" style="margin-top: 32px;">
         <form id="invForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe2">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
           <div class="form-row"><label for="i-name">Name *</label><input type="text" id="i-name" name="entry.455027715" required></div>
           <div class="form-row"><label for="i-email">Email *</label><input type="email" id="i-email" name="entry.414264367" required></div>
           <div class="form-row"><label for="i-firm">Firm / organization</label><input type="text" id="i-firm" name="entry.119689931"></div>
           <div class="form-row"><label for="i-msg">Tell us about your interest</label><textarea id="i-msg" name="entry.1292345725"></textarea></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
           <button type="submit">Get in touch →</button>
         </form>
         <iframe name="hidden_iframe2" style="display:none"></iframe>
@@ -696,10 +699,12 @@
       </div>
       <div class="footer-newsletter-form-wrap">
         <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdT98RF4UgkrU8RsYQ9yk9aVOO_F7xNktjant5XbnB6q_x0lQ/formResponse" method="POST" target="hidden_iframe_newsletter" data-success-title="You're on the list." data-success-body="Watch your inbox for occasional updates from PollenPal.">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
           <label class="visually-hidden" for="nl-name">Name</label>
           <input type="text" id="nl-name" name="entry.1325735936" placeholder="Name" required>
           <label class="visually-hidden" for="nl-email">Email</label>
           <input type="email" id="nl-email" name="entry.205724635" placeholder="you@example.com" required>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
           <button type="submit">Subscribe →</button>
         </form>
         <iframe name="hidden_iframe_newsletter" style="display:none"></iframe>
