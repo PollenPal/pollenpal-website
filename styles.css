@@ -1614,3 +1614,57 @@ sup.fn-ref a:hover { text-decoration: underline; }
   color: var(--gold-dark);
   margin-right: 4px;
 }
+
+/* ============================================================
+   APP LANDING PAGE COMPONENTS (hobbyist.html)
+   ============================================================ */
+
+/* Alternating image/text feature rows */
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  padding: 72px 0;
+}
+.feature-row + .feature-row { border-top: 1px solid var(--line); }
+.feature-row .feature-copy h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; }
+.feature-row .feature-copy p { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
+.feature-shot {
+  display: flex; justify-content: center;
+}
+.feature-shot img {
+  width: 100%; max-width: 300px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px -20px rgba(10,10,10,0.25), 0 8px 20px -6px rgba(10,10,10,0.12);
+}
+/* Flip every even row so images alternate sides */
+.feature-row:nth-child(even) .feature-copy { order: 2; }
+.feature-row:nth-child(even) .feature-shot { order: 1; }
+@media (max-width: 860px) {
+  .feature-row { grid-template-columns: 1fr; gap: 36px; padding: 56px 0; }
+  .feature-row:nth-child(even) .feature-copy { order: 2; }
+  .feature-row:nth-child(even) .feature-shot { order: 1; }
+  .feature-row .feature-copy { order: 2; }
+  .feature-row .feature-shot { order: 1; }
+  .feature-shot img { max-width: 260px; }
+}
+
+/* Pricing block */
+.pricing { text-align: center; }
+.pricing .price-card {
+  max-width: 460px; margin: 40px auto 0;
+  border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 44px 36px; background: var(--cream-soft);
+}
+.pricing .price-amount { font-size: 48px; font-weight: 800; color: var(--ink); line-height: 1; }
+.pricing .price-amount span { font-size: 18px; font-weight: 600; color: var(--muted); }
+.pricing .price-trial { margin: 14px 0 4px; font-size: 18px; color: var(--gold-dark); font-weight: 700; }
+.pricing .price-note { color: var(--ink-soft); font-size: 15px; margin-bottom: 28px; }
+
+/* FAQ */
+.faq .faq-list { max-width: 720px; margin: 40px auto 0; }
+.faq .faq-item { padding: 24px 0; border-top: 1px solid var(--line); }
+.faq .faq-item:last-child { border-bottom: 1px solid var(--line); }
+.faq .faq-item h3 { font-size: 19px; margin-bottom: 8px; }
+.faq .faq-item p { color: var(--ink-soft); font-size: 16px; line-height: 1.6; }
