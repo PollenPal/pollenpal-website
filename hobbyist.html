@@ -25,12 +25,12 @@
     .hero-subnote { font-size: 14px; color: var(--muted); margin-top: 16px; }
     .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
     .phone-frame {
-      position: relative; width: 100%; max-width: 300px; aspect-ratio: 9/19;
+      position: relative; width: 100%; max-width: 300px;
       border-radius: 34px; overflow: hidden; background: var(--ink);
       border: 8px solid var(--ink);
       box-shadow: 0 30px 80px -20px rgba(10,10,10,0.25), 0 8px 20px -6px rgba(10,10,10,0.12);
     }
-    .phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .phone-frame img { width: 100%; height: auto; display: block; }
     @media (max-width: 960px) {
       .hero { padding: 56px 0 64px; }
       .hero-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -127,6 +127,24 @@
     </div>
   </section>
 
+  <!-- FREE PERK: NFC STICKERS -->
+  <section class="section perk">
+    <div class="wrap perk-grid">
+      <div class="perk-copy">
+        <div class="eyebrow">Free perk</div>
+        <h2>Tap a hive. Log a visit.</h2>
+        <p>After your first paid month, we mail you free PollenPal stickers, one for each hive, already linked to it. Hold your phone up to a sticker, the same way you tap a card to pay, and that hive's inspection form opens right up. No app to open, nothing to type.</p>
+      </div>
+      <div class="perk-visual" aria-hidden="true">
+        <div class="nfc-sticker">
+          <span class="nfc-waves"></span>
+          <img src="/images/logo-full.png" alt="">
+          <span class="nfc-tap">Tap to log a visit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section class="section pricing">
     <div class="wrap">
@@ -136,6 +154,7 @@
         <div class="price-trial">Free for 30 days</div>
         <div class="price-amount">$6.99<span>/month</span></div>
         <p class="price-note">After your trial. Up to 10 hives. Cancel anytime.</p>
+        <p class="price-bonus">Plus free hive stickers, mailed after your first paid month.</p>
         <a href="https://app.pollenpal.com" class="btn btn-primary">Start your free trial →</a>
       </div>
     </div>
