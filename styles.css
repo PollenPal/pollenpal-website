@@ -1668,3 +1668,42 @@ sup.fn-ref a:hover { text-decoration: underline; }
 .faq .faq-item:last-child { border-bottom: 1px solid var(--line); }
 .faq .faq-item h3 { font-size: 19px; margin-bottom: 8px; }
 .faq .faq-item p { color: var(--ink-soft); font-size: 16px; line-height: 1.6; }
+
+/* ============================================================
+   FREE PERK: NFC STICKERS (hobbyist.html)
+   ============================================================ */
+.perk-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+.perk-copy h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; }
+.perk-copy p { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
+.perk-visual { display: flex; justify-content: center; }
+
+/* Branded NFC sticker mockup (pure CSS; logo is the real wordmark) */
+.nfc-sticker {
+  position: relative; width: 260px; height: 260px; border-radius: 30px;
+  background: var(--cream-soft); border: 1px solid var(--line);
+  box-shadow: 0 30px 80px -20px rgba(10,10,10,0.22), 0 8px 20px -6px rgba(10,10,10,0.10);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+}
+.nfc-sticker img { width: 152px; height: auto; }
+.nfc-sticker .nfc-tap {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-dark);
+}
+/* concentric "tap" signal arcs in the top-right corner */
+.nfc-sticker .nfc-waves,
+.nfc-sticker .nfc-waves::before,
+.nfc-sticker .nfc-waves::after {
+  position: absolute; border-radius: 50%; border: 2.5px solid var(--gold);
+}
+.nfc-sticker .nfc-waves { top: 30px; right: 32px; width: 12px; height: 12px; border-color: var(--gold-dark); }
+.nfc-sticker .nfc-waves::before { content: ""; width: 26px; height: 26px; top: -9.5px; left: -9.5px; opacity: 0.65; }
+.nfc-sticker .nfc-waves::after { content: ""; width: 42px; height: 42px; top: -17.5px; left: -17.5px; opacity: 0.32; }
+
+.pricing .price-bonus { color: var(--gold-dark); font-size: 14px; font-weight: 700; margin: -8px 0 24px; }
+
+@media (max-width: 860px) {
+  .perk-grid { grid-template-columns: 1fr; gap: 32px; }
+  .perk-visual { order: -1; }
+  .nfc-sticker { width: 220px; height: 220px; }
+  .nfc-sticker img { width: 132px; }
+}
