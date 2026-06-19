@@ -39,6 +39,17 @@
           return;
         }
       }
+      // ===== Passed guards: record the conversion =====
+      // GA4 gets it now via gtag; the dataLayer.push feeds GTM for the Google Ads
+      // conversion we wire later. Named per form so each is a distinct conversion.
+      var ppEvent = form.classList.contains('newsletter-form')
+        ? 'newsletter_signup'
+        : form.id === 'pilotForm' ? 'pilot_lead'
+        : form.id === 'invForm' ? 'investor_lead'
+        : 'form_submit';
+      if (window.gtag) { window.gtag('event', ppEvent); }
+      (window.dataLayer = window.dataLayer || []).push({ event: ppEvent });
+
       // ===== Passed: let the native POST proceed, then swap in success UI =====
       setTimeout(function () {
         // Newsletter form sits inside .footer-newsletter-form-wrap and uses
