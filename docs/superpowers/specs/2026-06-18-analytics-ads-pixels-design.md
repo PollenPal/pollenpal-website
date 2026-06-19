@@ -1,188 +1,250 @@
-# Analytics + Ads Pixels — pollenpal.com (and later app.pollenpal.com)
+# Analytics + Ads Tracking — pollenpal.com (and later app.pollenpal.com)
 
-**Status:** SCOPED / PARKED — design only, no implementation. Parked 2026-06-18 at Robert's
-request ("focus on other stuff right now"). Pick this up when paid campaigns are imminent.
+**Status:** ACTIVE — decisions locked 2026-06-18 (resumed from PARKED). Design approved by
+Robert; implementation blocked only on account creation (Robert's part). 
 **Owner:** software (GTM agent to track on Backlog Sheet)
 **Date:** 2026-06-18
 
 ---
 
+## Decisions locked (2026-06-18)
+
+| Decision | Choice | Why |
+|---|---|---|
+| **Architecture** | **Google Tag Manager (GTM)** | One control plane across the static site + Next.js app; add/change tags from a GUI with no code deploy; cleanest cross-domain linking + Consent Mode later. |
+| **Scope (now)** | **Google only — GA4 + Google Ads.** Meta (Facebook/Instagram) Pixel **deferred.** | Matches the actual ask ("Google ad tracking") and where spend is going. GTM makes adding Meta later a ~10-min dashboard job, not a rebuild. |
+| **Consent banner** | **Defer** (no banner now) | Audience is US beekeepers. Revisit only before targeting paid EU/UK traffic. |
+| **GA4 property** | **One property, shared site + app**, cross-domain linked | So `ad → site → app signup → subscribe` reads as ONE funnel, not two disconnected halves. |
+| **Primary site conversion** | **"Request a pilot" lead** (commercial). Investor + newsletter = secondary. | Pilot is the real commercial prospect. |
+| **In-app product analytics** | **SEPARATE future project** (self-hosted PostHog), NOT part of this | Different job, different tool, different privacy posture — see "Product analytics" below. |
+| **App "conversion" = trial-start vs first paid invoice** | **DEFERRED to Phase 2** | Trial-first billing makes this a real ROAS decision; decide when we build Phase 2. |
+
+---
+
 ## Goal
 
-Stand up marketing + ad-conversion measurement so we can run **Google Ads** and **Meta Ads**
-campaigns and actually optimize spend toward paying beekeepers. Three tags:
+Stand up ad-conversion measurement so we can run **Google Ads** campaigns and optimize spend
+toward paying beekeepers. Two Google tags now, via GTM:
 
 1. **Google Analytics 4 (GA4)** — traffic + behavior analytics
 2. **Google Ads** — base tag + remarketing + conversion tracking
-3. **Meta (Facebook/Instagram) Pixel** — PageView + Lead / conversion events
 
-None of these accounts/IDs exist yet (confirmed 2026-06-18). No analytics of any kind is on
-the site today.
+**Meta (Facebook/Instagram) Pixel is deferred** — add it inside GTM when Meta ads become a
+plan. No analytics of any kind is on the site OR the app today (confirmed by audit 2026-06-18);
+no GA4 / Google Ads / GTM accounts exist yet.
 
-## Key decision driving the whole design
+## Key design decision (drives the whole thing)
 
 **The real ad conversion happens in the app, not on the marketing site.** The funnel is:
 
 ```
-ad click → pollenpal.com (marketing) → "Get started" → app.pollenpal.com → signup → subscribe (Stripe)
+ad click → pollenpal.com (marketing) → "Start free trial" → app.pollenpal.com → signup → subscribe (Stripe)
 ```
 
-If we only pixel pollenpal.com, Google/Meta can optimize toward "visited a page" — a weak
-signal. To optimize toward **paying customers**, the conversion events must fire where the
-conversion completes (the app), and the two domains must be stitched into one funnel
-(cross-domain measurement). Hence the work spans **both** surfaces, but they get **different
-jobs** and are sequenced.
+If we only tag pollenpal.com, Google can optimize toward "visited a page" — a weak signal. To
+optimize toward **paying customers**, the conversion events must fire where the conversion
+completes (the app), and the two domains must be stitched into one funnel (cross-domain
+measurement). So the work spans **both** surfaces, with **different jobs**, sequenced.
 
 ### Scope split
 
-| | pollenpal.com (static HTML, GitHub Pages) | app.pollenpal.com (Next.js, Amplify) |
+| | pollenpal.com (static HTML) | app.pollenpal.com (Next.js, Amplify) |
 |---|---|---|
 | **GA4** | PageViews + form-lead events | Product analytics, **cross-domain linked** to the site |
-| **Google Ads** | base tag + remarketing | **conversion**: signup complete / subscribe |
-| **Meta Pixel** | PageView + **Lead** | **CompleteRegistration / Subscribe** only |
-| **Privacy posture** | marketing pages, lighter | logged-in product — **do NOT** blast every authenticated page to ad networks |
+| **Google Ads** | base tag + remarketing | **conversion**: signup complete + subscribe |
+| **Privacy posture** | marketing pages, lighter | logged-in product — **do NOT** blast every authenticated page to Google |
 
-## Sequencing (decided)
+## Sequencing
 
-- **Phase 1 — pollenpal.com (this repo).** Fast: static HTML. Where ad clicks land. Ship first.
-- **Phase 2 — app.pollenpal.com (`PollenPal/pollenpal-app`, `webapp/`).** Higher value
-  (closes the conversion loop) but more careful: Next.js integration, cross-domain linking,
-  consent, and privacy on authenticated pages. Separate spec when we get to it.
-
-This document fully scopes **Phase 1** and outlines **Phase 2**.
+- **Phase 1 — pollenpal.com (`PollenPal/pollenpal-website`, this repo).** Fast: static HTML.
+  Where ad clicks land. **Ship first.** Fully scoped below.
+- **Phase 2 — app.pollenpal.com (`PollenPal/pollenpal-app`, `webapp/`).** Higher value (closes
+  the conversion loop), more careful: Next.js integration, cross-domain linking, privacy on
+  authenticated pages. **Outlined below; gets its own implementation spec when we get to it.**
 
 ---
 
-## Architecture — OPEN DECISION (recommendation: GTM)
+## Architecture — DECIDED: Google Tag Manager
 
-Two viable ways to wire three tags. **Not yet finalized** — decide at implementation time.
+One GTM container snippet per page (head + `<noscript>`). GA4 and Google Ads are configured
+inside GTM's web UI; Meta and any future tags (LinkedIn, TikTok) get added there later with no
+code deploy. Cleanest path for cross-domain linking and (later) Consent Mode v2. Trade-off
+accepted: one extra dashboard to learn, GTM container is an extra runtime dependency.
 
-### Option A — Google Tag Manager (recommended)
-One GTM container snippet per page. GA4, Google Ads, and Meta Pixel are all configured
-inside GTM's web UI. Future conversion events / new pixels (LinkedIn, TikTok, etc.) = GUI
-change + publish, **no git deploy to either repo**.
-
-- **Pros:** single control plane across two very different codebases (static HTML + Next.js);
-  cleanest cross-domain linking and Google **Consent Mode v2** support; marketers can iterate
-  on conversions without an engineer; one snippet to maintain.
-- **Cons:** a third dashboard to learn; Meta Pixel in GTM is a "Custom HTML" tag (standard but
-  slightly fiddly); container is an extra runtime dependency.
-
-### Option B — Hardcoded directly
-GA4 + Google Ads via one shared `gtag.js` loader; Meta via its own `fbevents.js` snippet.
-Config lives in the repo (head snippet per page + event calls in the shared `/scripts.js`).
-
-- **Pros:** simplest mental model; full control in code; no extra dashboard; marginally faster.
-- **Cons:** every future conversion-event tweak or new pixel is a code change + push, in
-  **two** repos once the app is in scope; three separate snippets to keep in sync.
-
-**Recommendation:** **GTM.** We're about to spend on two ad platforms and will iterate on
-conversions constantly in early campaigns; a GUI control plane that spans the static site and
-the Next.js app is worth the one-time setup. Revisit only if we want zero third-party tag
-runtime.
+(Rejected alternative: hardcoding `gtag.js`/`fbevents.js` per page — simpler mental model but
+every future tweak is a code change + redeploy across two repos. Not worth it when we'll iterate
+on conversions during early campaigns.)
 
 ---
 
 ## Phase 1 — pollenpal.com implementation plan
 
-### Site facts (verified 2026-06-18)
-- Static HTML on GitHub Pages. Repo `PollenPal/pollenpal-website`, public, `CNAME = pollenpal.com`.
-- **Three live pages:** `index.html`, `hobbyist.html`, `investors.html`.
-- **No shared `<head>`** (static HTML) → the GTM/GA head snippet must be pasted into each
-  page's `<head>` (and the GTM `<noscript>` right after each `<body>` open).
-- **Shared script:** `/scripts.js` is `defer`-loaded on all three pages → the right home for
-  conversion event calls (`gtag`/`fbq`/`dataLayer.push`) on form submit.
-- **Already loaded third-party:** Cloudflare Turnstile (`challenges.cloudflare.com`) — account
-  for it in any CSP / consent work.
+### Site facts (audited 2026-06-18 — see "Audit corrections" for what the first draft got wrong)
+- Static HTML, repo `PollenPal/pollenpal-website`, `CNAME = pollenpal.com`. **Hosting method
+  (GitHub Pages) is NOT provable from the repo — no workflow / `_config.yml` / `.nojekyll`.
+  VERIFY hosting out-of-band before go-live** (doesn't change the plan, just a box to tick).
+- **Three primary live pages:** `index.html`, `hobbyist.html`, `investors.html`.
+- **Two leftover `archive/` pages also git-tracked and publicly reachable:** `archive/v1/index.html`
+  and `archive/hobbyist-hardware/index.html` (the latter is fully live — Turnstile, its own
+  `#hobForm` + newsletter form, links to app.pollenpal.com). **Plan: add `<meta name="robots"
+  content="noindex">` and do NOT instrument them**, so they don't pollute analytics. (There is
+  NO `how-it-works` page — "How it works" is the in-page anchor `/#how`.)
+- **No shared `<head>`** — each page has its own inline head. The GTM head snippet must be pasted
+  into each page's `<head>`, and the GTM `<noscript>` right after each `<body>` open.
+- **Shared script:** `/scripts.js` is `defer`-loaded on all pages (`index.html:443`,
+  `hobbyist.html:258`, `investors.html:739`) → the right home for the conversion `dataLayer.push`
+  calls on form submit.
+- **Already-loaded third-party:** Cloudflare Turnstile + Google Fonts. **No CSP exists**, so
+  adding GTM won't be blocked (and there's no CSP to update).
 
 ### Conversion points (the forms)
-All forms POST to Google Forms via a hidden iframe (no redirect; success shown in-page by
-`scripts.js`). So the conversion signal is the **submit handler in `scripts.js`**, not a
-thank-you page.
+All forms natively POST to a **Google Form** via a hidden iframe (no redirect). Success UI is
+rendered in `scripts.js` on a **fixed ~600ms timer after the honeypot + Turnstile guards pass** —
+the page cannot read the cross-origin Google Forms response, so "success" means "submitted &
+passed spam checks," not "Google confirmed save." **Therefore: fire the conversion inside the
+success path, AFTER the honeypot/Turnstile guards (`scripts.js:27,37`) — never before** (else
+spam/bot submits count as conversions).
 
-| Form | Page | Element | Event value |
-|---|---|---|---|
-| **Request a pilot** (commercial) | `index.html` | `#pilotForm` | **highest** — `generate_lead` / Meta `Lead` (primary conversion) |
-| **Investor — get in touch** | `investors.html` | `#invForm` | investor lead (separate event/label) |
-| **Newsletter subscribe** | all three | `.newsletter-form` | soft lead (`sign_up` / `Subscribe`) |
+| Form | Page(s) | Selector | GTM `dataLayer` event | Google Ads conversion |
+|---|---|---|---|---|
+| **Request a pilot** (commercial) | `index.html` (`#pilotForm`) | id | `pilot_lead` | **primary** |
+| **Investor — get in touch** | `investors.html` (`#invForm`) | id | `investor_lead` | secondary |
+| **Newsletter subscribe** | all 3 (`.newsletter-form`) | class | `newsletter_signup` | soft / secondary |
+
+> **Differentiation note:** `#pilotForm` and `#invForm` POST to the **same** Google Form with the
+> same `entry.*` field IDs. They can only be told apart by **form id**, not by action URL — so the
+> `scripts.js` handler must branch on the element (`#pilotForm` vs `#invForm` vs `.newsletter-form`)
+> when pushing the dataLayer event.
+
+### Cross-domain handoff (sets up Phase 2)
+All "go to the app" CTAs are **bare `https://app.pollenpal.com` links with no query params / no
+GA linker / no `gclid` forwarding today.** Locations: `index.html:109` (login nav-cta);
+`hobbyist.html:54,55,68,158,195,242` (login + multiple "Start free trial"); none on
+`investors.html` (its CTA is the in-page `#ask`). **Plan:** once GA4 is in GTM, enable GA4
+**cross-domain linking** for `app.pollenpal.com` so the linker auto-appends the `_gl` param, and
+ensure ad-click IDs (`gclid`) ride along to the app. This is the hook Phase 2 consumes.
 
 ### Work items (Phase 1)
-1. **Decide architecture** (GTM vs direct) — see above.
-2. **If GTM:** paste container snippet into `<head>` + `<noscript>` after `<body>` on all 3
-   pages. Configure GA4 / Google Ads / Meta tags + triggers inside GTM.
-   **If direct:** add the gtag.js + fbevents.js head snippets to all 3 pages; put `gtag`/`fbq`
-   init in a small shared head include pattern (or inline per page, kept in sync).
-3. **Wire conversion events** in `/scripts.js` on the three form submit handlers (pilot,
-   investor, newsletter), with distinct event names/labels so Google Ads & Meta can target the
-   commercial-pilot lead specifically.
-4. **Outbound "go to app" tracking:** tag the "Get started / app" CTA links so we can see
-   click-through to `app.pollenpal.com` (and so cross-domain linking has a handoff to measure
-   in Phase 2).
-5. **Consent banner — OPEN DECISION** (see Privacy below).
-6. **Verify:** GA4 Realtime shows hits; Google Tag Assistant / Meta Pixel Helper confirm all
-   three fire; test each form submit fires its conversion. Document the GA4 property + Ads
-   conversion IDs + Meta Pixel ID in a non-public place (NOT this public repo).
+1. **Paste the GTM container snippet** (`<head>` + `<noscript>` after `<body>`) into `index.html`,
+   `hobbyist.html`, `investors.html`. Use a placeholder `GTM-XXXXXXX` until the real container ID
+   exists, then one-line swap.
+2. **`noindex` the two `archive/` pages** and leave them un-instrumented.
+3. **Wire conversion events in `/scripts.js`**: in the form success path (after guards), branch on
+   the form element and `dataLayer.push({event: 'pilot_lead' | 'investor_lead' | 'newsletter_signup'})`.
+4. **In GTM (dashboard, not code):** add the GA4 config tag (fires all pages), a Google Ads base
+   tag, GA4 + Ads conversion triggers bound to the three dataLayer events, and enable GA4
+   cross-domain linking to `app.pollenpal.com`.
+5. **Verify:** GTM Preview mode + Google Tag Assistant confirm the container + GA4 fire; GA4
+   Realtime shows hits; each form submit fires its event once (and does NOT fire on a blocked
+   spam/bot submit). Record GA4 Measurement ID + Ads ID + conversion labels in a **private** store
+   (NOT this public repo).
 
 ---
 
-## Phase 2 — app.pollenpal.com (outline only)
+## Phase 2 — app.pollenpal.com (outline only; own spec later)
 
-Repo `PollenPal/pollenpal-app`, `webapp/` (Next.js 16 + next-intl, Amplify-hosted).
+Repo `PollenPal/pollenpal-app`, `webapp/` — **Next.js 16.2.9 + React 19, App Router, next-intl,
+Amplify-hosted.** Root layout: **`webapp/app/layout.tsx`** (async server component, already
+renders a `<head>`) — the only global mount point for the GTM/GA4 tag (`next/script`).
 
-- **GA4:** add via `next/script` in the root layout (or GTM container). Same GA4 property as
-  the site (or a second one) with **cross-domain linking** so site↔app is one session/funnel.
-- **Google Ads + Meta:** fire **conversion events only** at the moments that matter —
-  signup complete (`CompleteRegistration`) and subscription success (`Subscribe`/`Purchase`,
-  hook off the existing Stripe success path / billing events). **Do not** put a blanket
-  PageView pixel on every authenticated route.
-- **Cross-domain:** ensure `gclid`/`fbclid` (ad click IDs) survive the `pollenpal.com →
-  app.pollenpal.com` hop; GA4 linker + URL params. This is what actually attributes a paying
-  beekeeper back to the ad that produced them.
-- **Privacy:** authenticated product pages carry PII risk — keep ad pixels to conversion
-  moments, integrate Consent Mode, and review what parameters get sent.
+**Existing first-party funnel to piggyback on (PR #268):** `webapp/app/lib/funnel.ts`
+(`trackFunnel` → `POST /api/funnel-events`, anon id in localStorage `pp_anon_id`). Co-locate each
+ad-conversion fire with the matching `trackFunnel` call.
+
+- **GA4:** same property as the site, **cross-domain linked** so site↔app is one funnel.
+- **Signup-complete conversion (`CompleteRegistration` / Ads signup):** fire at **both** exits —
+  the email-code path `webapp/app/signup/page.tsx:211` (next to `trackFunnel("signup_confirmed")`)
+  AND the **auto-confirm** path `signup/page.tsx:130-135` (else auto-confirmed users are
+  under-counted; the existing funnel has this same blind spot).
+- **Subscribe conversion:** client-side, fire on the success page `webapp/app/onboarding/complete/page.tsx`
+  **when `sub.access === "full"` is first observed (`:44-46`)** — NOT on page mount (trial
+  activation lags the redirect; the page polls) and dedupe against the "Check again" retry (`:67`).
+  Server-side alternative: the `checkout.session.completed` webhook (`api/routes/billing.py:234-244`)
+  / `api/billing_events.py` for Google Ads offline/enhanced conversion uploads.
+- **DECISION DEFERRED — what counts as the "subscribe" conversion:** the flow is a **30-day free
+  trial** (`$0` at `checkout.session.completed`). "Conversion" can mean **trial-start** (more
+  volume, Google learns fast, some never pay) or **first paid invoice** (true paying customer,
+  ~30-day learning delay). Decide at Phase 2 build. Also add a funnel-parity event
+  (`onboarding_completed` / `subscription_active`) — today the funnel stops at
+  `onboarding_trial_started` (`onboarding/page.tsx:334`, pre-Stripe-redirect).
+- **Cross-domain ad-click ID:** the app captures **nothing** today (only `?promo=` at
+  `signup/page.tsx:72-80` — copy that pattern to capture `gclid`/`utm_*` into storage so they
+  survive the Cognito confirm round-trip + Stripe redirect). For server-side conversions, thread
+  `gclid` into Stripe Checkout metadata at session creation (`api/stripe_client.py:78-81`).
+- **Privacy:** conversion moments sit on **authenticated** pages with email/name in scope. Scope
+  pixels to signup/checkout routes (do NOT inject a blanket pageview pixel globally in
+  `layout.tsx`), use Google **Enhanced Conversions** with **hashed** email only, and match the
+  funnel's existing no-raw-PII discipline (`funnel.py` stores no PII; `billing_events.data` is
+  already flagged for a PII-purge pass).
 
 ---
 
-## Privacy / consent — OPEN DECISION
+## Privacy / consent — DECIDED: defer (no banner now)
 
-- Audience is mostly US (beekeepers), but Meta Pixel + EU/UK visitors raise GDPR/ePrivacy and
-  Google **Consent Mode v2** is effectively required for EU ad features.
-- **Options:** (a) ship without a banner initially (fastest, common for early US marketing
-  sites, accept the gap); (b) lightweight consent banner + Consent Mode v2 (GTM makes this
-  much easier — another point for Option A).
-- Add a short privacy-policy / cookie note if we add a banner.
-- **Decide before launching paid EU traffic.** Defer for US-only launch is defensible.
+- Audience is mostly US beekeepers. Ship without a consent banner initially (common for early US
+  marketing sites; accept the EU gap).
+- **Revisit before launching paid EU/UK traffic** — then add a lightweight consent banner +
+  Google Consent Mode v2 (GTM makes this much easier) and a short privacy/cookie note.
+- App-side: keep ad tags to conversion moments + hashed PII regardless of banner (see Phase 2).
 
-## Account-creation guide (to get the IDs)
+## Product analytics (in-app behavior) — SEPARATE future project, OUT of scope here
 
-When we resume, create accounts in this order and capture each ID:
+Tracking what users *do inside* the app (feature usage, onboarding drop-off, retention, session
+replay) is a **different job** from ad-conversion tracking and is explicitly **not** part of this
+work. Notes for when we pick it up:
+- GA4 (going into the app anyway) gives a basic in-app behavior layer for free, but is weak at
+  per-user retention / feature-adoption / replay questions.
+- Right tool is a product-analytics platform — **PostHog** (free tier, **self-hostable** → fits
+  Robert's data-ownership preference, funnels + retention + session replay).
+- We already have a narrow first-party funnel (`funnel_events`, no dashboard) — not zero today.
+- Privacy: a self-hosted tool avoids piping logged-in beekeepers' behavior to Google.
+- **Action:** logged as its own Backlog item; do NOT entangle with the ad-tracking build.
 
-1. **GA4** — analytics.google.com → create Account + Property → add a **Web data stream** for
-   `pollenpal.com` (and later `app.pollenpal.com`) → copy **Measurement ID** `G-XXXXXXXXXX`.
-2. **Google Ads** — ads.google.com → create account → Tools → Conversions → create conversion
-   actions (pilot lead, newsletter; later signup/subscribe). Note the **Ads ID** `AW-XXXXXXXXXX`
-   and each conversion's **label**. (Can link Ads ↔ GA4 to import GA4 conversions.)
-3. **Meta** — business.facebook.com → Events Manager → create a **Pixel** → copy the numeric
-   **Pixel ID**. Set up domain verification for `pollenpal.com`.
-4. **(If GTM) Google Tag Manager** — tagmanager.google.com → create a **Web container** for
-   `pollenpal.com` → copy **Container ID** `GTM-XXXXXXX`. Add GA4 / Ads / Meta tags + triggers
-   inside it.
+## Account-creation guide (Robert's part — the only blocker)
 
-Store the resulting IDs somewhere private (1Password / the PollenPal `.env` conventions) — they
-go in code/GTM, **never committed as anything sensitive** (GA/Ads/Meta web IDs are public-by-
-design, but keep account access controlled).
+Create these **three free** accounts (Google login; Meta deferred). Capture each ID into a
+**private** store (NOT this repo):
 
-## Open decisions before implementation (checklist)
-- [ ] Architecture: **GTM** vs direct hardcoded
-- [ ] Consent banner now vs defer (US-only launch)
-- [ ] Same GA4 property for site + app, or two
-- [ ] Which form submits count as primary conversions (proposed: pilot = primary)
-- [ ] Who creates the ad accounts / owns ongoing GTM (Robert vs delegate)
+1. **Google Analytics 4** — analytics.google.com → create Account + Property → add a **Web data
+   stream** for `pollenpal.com` (add `app.pollenpal.com` as a second stream later) → copy the
+   **Measurement ID** `G-XXXXXXXXXX`.
+2. **Google Ads** — ads.google.com → create account (asks for a card during setup; creating it is
+   free, no spend required) → Tools → Conversions → create conversion actions (pilot lead;
+   newsletter; later signup/subscribe). Note the **Ads ID** `AW-XXXXXXXXXX` + each conversion's
+   **label**. Link Ads ↔ GA4 to import GA4 conversions.
+3. **Google Tag Manager** — tagmanager.google.com → create a **Web container** for `pollenpal.com`
+   → copy the **Container ID** `GTM-XXXXXXX`. (GA4 + Ads tags get configured inside it.)
+
+(GA/Ads/GTM web IDs are public-by-design, but keep account *access* controlled.)
+
+## Resolved decisions (was the open checklist)
+- [x] Architecture: **GTM**
+- [x] Scope now: **Google only (GA4 + Google Ads)**; Meta deferred
+- [x] Consent banner: **defer** (US-only launch)
+- [x] GA4 property: **one, shared** site + app
+- [x] Primary site conversion: **pilot lead**
+- [ ] **(Phase 2)** App "subscribe" conversion = trial-start vs first paid invoice
+- [ ] **(Robert)** Create the 3 accounts (GA4, Google Ads, GTM) + capture IDs
+- [ ] Verify site hosting method (GitHub Pages) out-of-band
+
+## Audit corrections (what the first draft got wrong — fixed above)
+- `/how-it-works` page does **not** exist (it's the `/#how` anchor).
+- **Two live `archive/` pages** exist and are publicly reachable — first draft ignored them.
+- **Pilot + investor forms share one Google Form** → differentiate by form id, not action URL.
+- **Success fires on a 600ms timer, not on confirmed save**, and is skipped when honeypot/Turnstile
+  block — fire the conversion inside the success path, after the guards.
+- **GitHub Pages hosting is unconfirmed** from the repo — verify out-of-band.
+- App CTAs carry **no gclid/linker** today; Next.js is **16.2.9 / React 19**; app has **no consent
+  infra** and **two** signup-complete exits; billing is **trial-first** (changes "subscribe"
+  semantics).
 
 ## Backlog entry (for the Backlog Sheet)
-> **Item:** Set up Google Analytics + Google Ads pixel + Meta Ads pixel on pollenpal.com (Phase 1),
-> then app.pollenpal.com (Phase 2). **Category:** Marketing/Infra. **Owner:** software.
-> **Source/Context:** Robert ask 2026-06-18. **Notes:** Scoped + parked — full design at
-> `docs/superpowers/specs/2026-06-18-analytics-ads-pixels-design.md` in pollenpal-website.
-> Blocked on: create the 4 accounts/IDs (GA4, Google Ads, Meta Pixel, GTM) + pick GTM-vs-direct.
-> Real conversion is in-app, so Phase 2 closes the loop.
+> **Item:** Set up Google Analytics + Google Ads tracking via GTM on pollenpal.com (Phase 1), then
+> app.pollenpal.com (Phase 2). **Category:** Marketing/Infra. **Owner:** software.
+> **Source/Context:** Robert ask 2026-06-18 (resumed). **Notes:** Design locked (GTM, Google-only,
+> consent deferred) at `docs/superpowers/specs/2026-06-18-analytics-ads-pixels-design.md` in
+> pollenpal-website. Blocked on Robert creating 3 accounts (GA4, Google Ads, GTM). Meta deferred.
+> Real conversion is in-app → Phase 2 closes the loop.
+>
+> **Separate item:** Product analytics for the app (self-hosted PostHog) — understand in-app
+> behavior/retention. Distinct from ad tracking; do not entangle.
