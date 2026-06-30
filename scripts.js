@@ -1,4 +1,4 @@
-// PollenPal — minimal interactive layer
+// PollenPal: minimal interactive layer
 // (1) Mobile nav toggle
 // (2) Form submission feedback
 // (3) Smooth scroll for in-page anchors
@@ -20,7 +20,7 @@
     form.addEventListener('submit', function (e) {
       // ===== BOT PROTECTION (runs before the iframe POST) =====
       // (1) Honeypot: a hidden "company" field humans never see. If a bot
-      //     filled it, silently drop the submission — no alert, since bots
+      //     filled it, silently drop the submission; no alert, since bots
       //     learn from rejection messages.
       const honeypot = form.querySelector('input[name="company"]');
       if (honeypot && honeypot.value.trim() !== '') {
@@ -70,7 +70,7 @@
         if (!card) return;
         card.innerHTML =
           '<div class="form-success">' +
-          '<h3>Thanks — we\'ll be in touch.</h3>' +
+          '<h3>Thanks, we\'ll be in touch.</h3>' +
           '<p>We\'ll respond within 2 business days.</p>' +
           '</div>';
       }, 600);
