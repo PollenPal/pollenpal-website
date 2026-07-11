@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TK6LX9R4');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Google Analytics 4 (gtag.js): base install in code; GTM reserved for ad pixels -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QSK1ZT47P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2QSK1ZT47P');
+  </script>
+  <!-- End Google Analytics 4 -->
+  <title>PollenPal · Merch</title>
+  <meta name="description" content="PollenPal tees. Heavyweight garment-dyed cotton with the PollenPal mark on the chest. Printed on demand, shipped from the US.">
+  <meta property="og:title" content="PollenPal · Merch">
+  <meta property="og:description" content="Heavyweight garment-dyed cotton with the PollenPal mark on the chest. Printed on demand, shipped from the US.">
+  <meta property="og:image" content="/images/merch/tee-black.jpg">
+  <link rel="icon" href="/images/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Merch page only. Kept local rather than in styles.css: this page is a
+       standalone surface that no other page links to, and styles.css is the
+       shared system every marketing page depends on.
+       Own class names (.merch-*) so nothing here fights .section's 120px default. */
+
+    .merch-hero { padding: 92px 0 0; text-align: center; }
+    .merch-hero .eyebrow { display: flex; justify-content: center; }
+    .merch-hero h1 { font-size: clamp(44px, 5.6vw, 76px); margin-bottom: 20px; }
+    .merch-hero .lede { margin: 0 auto; }
+
+    .merch-shop {
+      margin-top: 72px;
+      padding: 80px 0 96px;
+      background: var(--cream-soft);
+      border-top: 1px solid var(--line);
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .merch-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .merch-card:hover,
+    .merch-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px -22px rgba(10, 10, 10, 0.28);
+    }
+    /* Printful's mockups bake in an opaque white background, so the image plate
+       has to be white. Both files are cropped to one shared box, which is what
+       keeps the two shirts at identical scale side by side. */
+    .merch-card img {
+      display: block;
+      width: 100%;
+      /* height:auto is load-bearing. The width/height attributes on the <img> are
+         kept so the browser can reserve space and not shift layout on load, but
+         without this the 760 height attribute wins over aspect-ratio and renders
+         the shirt into a portrait box that object-fit then crops. */
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .merch-card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 4px;
+      padding: 24px 26px 26px;
+      border-top: 1px solid var(--line);
+    }
+    .merch-card h2 {
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .merch-colorway { font-size: 14px; color: var(--muted); margin: 0; }
+
+    .merch-buy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .merch-price { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+    .merch-price small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+    .merch-buy .btn { padding: 13px 24px; }
+
+    /* Spec strip. Uses the same uppercase-label discipline as the rest of the site,
+       and replaces what was a paragraph of grey small print. */
+    .merch-specs {
+      max-width: 1000px;
+      margin: 72px auto 0;
+      padding-top: 44px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .merch-spec h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin: 0 0 10px;
+    }
+    .merch-spec p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+    .merch-footnote {
+      max-width: 1000px;
+      margin: 44px auto 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .merch-grid { grid-template-columns: 1fr; gap: 28px; max-width: 440px; }
+      .merch-specs { grid-template-columns: 1fr; gap: 28px; margin-top: 56px; padding-top: 36px; }
+      .merch-hero { padding-top: 64px; }
+      .merch-shop { margin-top: 56px; padding: 56px 0 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .merch-card { transition: none; }
+      .merch-card:hover, .merch-card:focus-within { transform: none; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK6LX9R4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="PollenPal"></a>
+    <a href="https://app.pollenpal.com" class="nav-cta">Beekeeper login →</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="merch-hero">
+    <div class="wrap">
+      <span class="eyebrow">Merch</span>
+      <h1>Wear the hive.</h1>
+      <p class="lede center">Heavyweight garment-dyed cotton with the PollenPal mark on the chest. Printed on demand, shipped from the US.</p>
+    </div>
+  </section>
+
+  <section class="merch-shop">
+    <div class="wrap">
+
+      <div class="merch-grid">
+
+        <article class="merch-card">
+          <img src="/images/merch/tee-white.jpg" alt="PollenPal Classic Tee in white, logo on the left chest" width="760" height="760">
+          <div class="merch-card-body">
+            <h2>PollenPal Classic Tee</h2>
+            <p class="merch-colorway">White. Logo on the left chest.</p>
+            <div class="merch-buy">
+              <span class="merch-price">$19.88<small>S to 4XL</small></span>
+              <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-classic-tee" rel="noopener">Buy →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="merch-card">
+          <img src="/images/merch/tee-black.jpg" alt="PollenPal Innovative Tee in black, logo across the chest" width="760" height="760">
+          <div class="merch-card-body">
+            <h2>PollenPal Innovative Tee</h2>
+            <p class="merch-colorway">Black. Logo across the chest.</p>
+            <div class="merch-buy">
+              <span class="merch-price">$19.88<small>S to 4XL</small></span>
+              <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-innovative-tee" rel="noopener">Buy →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="merch-specs">
+        <div class="merch-spec">
+          <h3>The blank</h3>
+          <p>Comfort Colors 1717. Garment-dyed 100% ring-spun cotton at 6.1 oz, relaxed fit, pre-shrunk. It gets softer the more you wear it.</p>
+        </div>
+        <div class="merch-spec">
+          <h3>Sizing</h3>
+          <p>S through 4XL, unisex. 2XL and up cost a little more, since the blank does. Size guide is on the product page.</p>
+        </div>
+        <div class="merch-spec">
+          <h3>Shipping</h3>
+          <p>Each shirt is printed after you order it and ships within the US. Nothing sits in a warehouse waiting.</p>
+        </div>
+      </div>
+
+      <p class="merch-footnote">
+        Printful prints and ships every order for us, so Buy opens our store on their site to pick a size and pay.
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-wordmark"><img src="/images/logo-icon.png" alt="">PollenPal</div>
+        <p>Physical AI for commercial apiaries and farms.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/">How it works</a></li>
+          <li><a href="/hobbyist">The app</a></li>
+          <li><a href="https://app.pollenpal.com">Beekeeper login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 PollenPal, Inc.
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts.js" defer></script>
+</body>
+</html>
