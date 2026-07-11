@@ -45,26 +45,28 @@ than hiding it, which is what keeps the handoff from feeling broken.
 
 ## Pricing
 
-Printful's cost (product plus fulfillment, verified against their order-estimate endpoint,
-not just the catalog):
+Live prices, read off the storefront (not the API, see the trap below). The store's 30%
+default markup sets them: retail is Printful's cost times 1.30, per size.
 
-| Size | Printful cost | Retail | Net to us |
+| Size | Printful cost | Store price | Net to us |
 |---|---|---|---|
-| S to XL | $15.29 | $28 | $12.71 |
-| 2XL | $17.29 | $30 | $12.71 |
-| 3XL | $19.29 | $32 | $12.71 |
-| 4XL | $21.29 | $34 | $12.71 |
+| S to XL | $15.29 | $19.88 | $4.59 |
+| 2XL | $17.29 | $22.48 | $5.19 |
+| 3XL | $19.29 | $25.08 | $5.79 |
+| 4XL | $21.29 | $27.68 | $6.39 |
 
-Printful's payout formula is `retail price - product and fulfillment cost = profit`, with no
-monthly fee and no listed commission. Payouts are monthly via Stripe with a **$25 minimum**,
-and profit only becomes visible after an order is delivered.
+Costs are verified against Printful's order-estimate endpoint, not just the catalog. Printful's
+payout formula is `retail price - product and fulfillment cost = profit`, with no monthly fee and
+no listed commission. Payouts are monthly via Stripe with a **$25 minimum**, and profit only
+becomes visible after an order is delivered.
 
-The size ladder tracks Printful's cost steps exactly, so margin is constant across sizes.
-Both colorways are priced the same on purpose: they are the same blank (Comfort Colors 1717),
-and pricing them differently invites the customer to buy the cheaper one for no reason.
+Robert's requirements: both colorways the **same price**, every size **net profitable**, and around
+$20. The 30% markup satisfies all three. Both colorways must stay priced together: they are the same
+blank (Comfort Colors 1717), so pricing them differently just pushes the customer to the cheaper one
+for no reason.
 
-**Do not set a low default markup.** The store's default markup governs future product pushes;
-at 30% a tee would net $4.59 instead of $12.71.
+**The price shown on `/merch` must be read off the storefront, not the API.** They are separate
+records and they can disagree.
 
 ## Page architecture
 
@@ -97,6 +99,13 @@ No build step, consistent with the rest of the site.
   storefront.** Both tees reported `synced: 7/7` and `availability_status: active` while the
   storefront still showed "No products yet" and the product URLs redirected to the store root.
   Publishing is a separate dashboard action.
+- **The Printful API does NOT drive Quick Store pricing. Do not trust `retail_price`.**
+  `PUT /store/variants/{id}` happily accepts a new `retail_price` and reports it back, but the
+  Quick Store keeps its own price record, derived from the store's default markup when the product
+  is published, and editable only in the Printful dashboard. We set the tees to $28 through the API
+  and got a clean 200 with $28 echoed back, while the storefront went on charging $19.88. The two
+  records were only reconciled by setting the API value to match the storefront.
+  **Verify prices by loading `pollenpal.printful.me`, never by reading the API.**
 - **The `printful.me` slug is permanent.** It derives from the store name at creation and cannot
   be changed afterward.
 
