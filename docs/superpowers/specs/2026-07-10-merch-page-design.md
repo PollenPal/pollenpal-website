@@ -88,7 +88,15 @@ No build step, consistent with the rest of the site.
 
 - **Printful mockups have an opaque white background**, so the product cards must be white.
   A cream card frames every shot in a visible white box. This is why `.merch-card` is `--bg`
-  and the surrounding section is `.bg-cream`, rather than the reverse.
+  and the surrounding section is `.merch-shop` (cream), rather than the reverse.
+- **Both mockups are cropped to ONE shared box** (computed from the union of the two garments'
+  bounding boxes). Cropping each image to its own bounds would render the two shirts at slightly
+  different scales side by side, which is exactly the kind of thing that reads as amateur without
+  the viewer being able to say why.
+- **`.merch-card img` needs an explicit `height: auto`.** The `width`/`height` attributes on the
+  `<img>` are kept so the browser reserves space and does not shift layout on load, but the `height`
+  attribute otherwise wins over `aspect-ratio: 1/1` and renders the shirt into a 478x760 portrait
+  box that `object-fit: cover` then crops. This shipped once and looked broken.
 - **Mockup images are committed to `images/merch/`, not hotlinked** from `files.cdn.printful.com`.
   Those CDN URLs are content-hashed and rotate when a design is re-uploaded, which would break
   the page silently.

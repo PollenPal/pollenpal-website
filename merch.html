@@ -32,18 +32,29 @@
   <style>
     /* Merch page only. Kept local rather than in styles.css: this page is a
        standalone surface that no other page links to, and styles.css is the
-       shared system for the marketing pages. */
-    .merch-hero { padding: 88px 0 8px; text-align: center; }
+       shared system every marketing page depends on.
+       Own class names (.merch-*) so nothing here fights .section's 120px default. */
+
+    .merch-hero { padding: 92px 0 0; text-align: center; }
     .merch-hero .eyebrow { display: flex; justify-content: center; }
-    .merch-hero h1 { font-size: clamp(42px, 5.4vw, 72px); margin-bottom: 22px; }
+    .merch-hero h1 { font-size: clamp(44px, 5.6vw, 76px); margin-bottom: 20px; }
+    .merch-hero .lede { margin: 0 auto; }
+
+    .merch-shop {
+      margin-top: 72px;
+      padding: 80px 0 96px;
+      background: var(--cream-soft);
+      border-top: 1px solid var(--line);
+    }
 
     .merch-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      max-width: 880px;
+      gap: 40px;
+      max-width: 1000px;
       margin: 0 auto;
     }
+
     .merch-card {
       display: flex;
       flex-direction: column;
@@ -53,52 +64,95 @@
       overflow: hidden;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .merch-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px -18px rgba(10, 10, 10, 0.22);
+    .merch-card:hover,
+    .merch-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px -22px rgba(10, 10, 10, 0.28);
     }
-    /* The Printful mockups ship on an opaque white background, so the card
-       has to be white too. A cream card would frame each shot in a white box. */
+    /* Printful's mockups bake in an opaque white background, so the image plate
+       has to be white. Both files are cropped to one shared box, which is what
+       keeps the two shirts at identical scale side by side. */
     .merch-card img {
       display: block;
       width: 100%;
+      /* height:auto is load-bearing. The width/height attributes on the <img> are
+         kept so the browser can reserve space and not shift layout on load, but
+         without this the 760 height attribute wins over aspect-ratio and renders
+         the shirt into a portrait box that object-fit then crops. */
+      height: auto;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       background: #fff;
     }
+
     .merch-card-body {
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 26px 26px 28px;
+      gap: 4px;
+      padding: 24px 26px 26px;
       border-top: 1px solid var(--line);
     }
-    .merch-card h2 { font-size: 21px; line-height: 1.25; margin-bottom: 6px; }
-    .merch-colorway { font-size: 14px; color: var(--muted); }
-    .merch-meta {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 18px;
+    .merch-card h2 {
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0;
     }
-    .merch-price { font-size: 20px; font-weight: 700; color: var(--ink); }
-    .merch-sizes { font-size: 13px; color: var(--muted); }
-    .merch-card .btn { margin-top: 20px; justify-content: center; }
+    .merch-colorway { font-size: 14px; color: var(--muted); margin: 0; }
 
-    .merch-note {
-      max-width: 620px;
-      margin: 64px auto 0;
-      text-align: center;
-      font-size: 14px;
-      line-height: 1.7;
+    .merch-buy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .merch-price { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+    .merch-price small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+    .merch-buy .btn { padding: 13px 24px; }
+
+    /* Spec strip. Uses the same uppercase-label discipline as the rest of the site,
+       and replaces what was a paragraph of grey small print. */
+    .merch-specs {
+      max-width: 1000px;
+      margin: 72px auto 0;
+      padding-top: 44px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .merch-spec h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin: 0 0 10px;
+    }
+    .merch-spec p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+    .merch-footnote {
+      max-width: 1000px;
+      margin: 44px auto 0;
+      font-size: 13px;
+      line-height: 1.6;
       color: var(--muted);
     }
-    .merch-note strong { color: var(--ink-soft); font-weight: 600; }
 
-    @media (max-width: 720px) {
-      .merch-grid { grid-template-columns: 1fr; max-width: 420px; }
+    @media (max-width: 860px) {
+      .merch-grid { grid-template-columns: 1fr; gap: 28px; max-width: 440px; }
+      .merch-specs { grid-template-columns: 1fr; gap: 28px; margin-top: 56px; padding-top: 36px; }
       .merch-hero { padding-top: 64px; }
+      .merch-shop { margin-top: 56px; padding: 56px 0 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .merch-card { transition: none; }
+      .merch-card:hover, .merch-card:focus-within { transform: none; }
     }
   </style>
 </head>
@@ -127,45 +181,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="section bg-cream">
+  <section class="merch-shop">
     <div class="wrap">
 
       <div class="merch-grid">
 
         <article class="merch-card">
-          <img src="/images/merch/tee-white.jpg" alt="PollenPal Classic Tee in white, with the PollenPal logo on the left chest" width="800" height="800" loading="lazy">
+          <img src="/images/merch/tee-white.jpg" alt="PollenPal Classic Tee in white, logo on the left chest" width="760" height="760">
           <div class="merch-card-body">
             <h2>PollenPal Classic Tee</h2>
             <p class="merch-colorway">White. Logo on the left chest.</p>
-            <div class="merch-meta">
-              <span class="merch-price">From $19.88</span>
-              <span class="merch-sizes">S to 4XL</span>
+            <div class="merch-buy">
+              <span class="merch-price">$19.88<small>S to 4XL</small></span>
+              <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-classic-tee" rel="noopener">Buy →</a>
             </div>
-            <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-classic-tee" rel="noopener">Buy →</a>
           </div>
         </article>
 
         <article class="merch-card">
-          <img src="/images/merch/tee-black.jpg" alt="PollenPal Innovative Tee in black, with the PollenPal logo across the chest" width="800" height="800" loading="lazy">
+          <img src="/images/merch/tee-black.jpg" alt="PollenPal Innovative Tee in black, logo across the chest" width="760" height="760">
           <div class="merch-card-body">
             <h2>PollenPal Innovative Tee</h2>
             <p class="merch-colorway">Black. Logo across the chest.</p>
-            <div class="merch-meta">
-              <span class="merch-price">From $19.88</span>
-              <span class="merch-sizes">S to 4XL</span>
+            <div class="merch-buy">
+              <span class="merch-price">$19.88<small>S to 4XL</small></span>
+              <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-innovative-tee" rel="noopener">Buy →</a>
             </div>
-            <a class="btn btn-primary" href="https://pollenpal.printful.me/product/pollenpal-innovative-tee" rel="noopener">Buy →</a>
           </div>
         </article>
 
       </div>
 
-      <p class="merch-note">
-        Every shirt is a Comfort Colors 1717, a heavyweight garment-dyed blank that softens with wear.
-        Sizes run S to 4XL; 2XL and up cost a little more.
-        <br><br>
-        <strong>Checkout happens on our Printful store.</strong> Printful prints and ships each order for us,
-        so the Buy button takes you to their secure storefront to pick a size and pay. Orders ship within the US.
+      <div class="merch-specs">
+        <div class="merch-spec">
+          <h3>The blank</h3>
+          <p>Comfort Colors 1717. Garment-dyed 100% ring-spun cotton at 6.1 oz, relaxed fit, pre-shrunk. It gets softer the more you wear it.</p>
+        </div>
+        <div class="merch-spec">
+          <h3>Sizing</h3>
+          <p>S through 4XL, unisex. 2XL and up cost a little more, since the blank does. Size guide is on the product page.</p>
+        </div>
+        <div class="merch-spec">
+          <h3>Shipping</h3>
+          <p>Each shirt is printed after you order it and ships within the US. Nothing sits in a warehouse waiting.</p>
+        </div>
+      </div>
+
+      <p class="merch-footnote">
+        Printful prints and ships every order for us, so Buy opens our store on their site to pick a size and pay.
       </p>
 
     </div>
