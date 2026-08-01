@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Commercial content moved to /commercial; forward stale deep links.
+    (function () {
+      var moved = ['problem', 'how', 'advantage', 'traction', 'roadmap', 'founders', 'pilot'];
+      var h = location.hash.replace('#', '');
+      if (moved.indexOf(h) !== -1) location.replace('/commercial#' + h);
+    })();
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -19,10 +27,10 @@
     gtag('config', 'G-2QSK1ZT47P');
   </script>
   <!-- End Google Analytics 4 -->
-  <title>PollenPal · Physical AI for commercial apiaries</title>
-  <meta name="description" content="PollenPal watches every bee in and out of your hive. It tracks colony activity in real time and flags varroa, africanization, and queen issues before they spread. Pilot-ready in 2026.">
-  <meta property="og:title" content="PollenPal · Physical AI for commercial apiaries">
-  <meta property="og:description" content="Inspect every hive. Every day. Continuous monitoring for commercial beekeeping operations.">
+  <title>PollenPal · Every bee. Every hive. Every day.</title>
+  <meta name="description" content="PollenPal builds hive intelligence for beekeepers. AI camera hardware and a full monitoring suite for commercial operations, and a simple inspection app for hobbyists.">
+  <meta property="og:title" content="PollenPal · Every bee. Every hive. Every day.">
+  <meta property="og:description" content="Hive intelligence for beekeepers. Camera hardware and monitoring for commercial operations, and a simple inspection app for hobbyists.">
   <meta property="og:image" content="/images/hero-poster.jpg">
   <link rel="icon" href="/images/logo-icon.png">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -30,88 +38,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
-  <style>
-    /* Critical hero CSS, inlined for first paint */
-    .hero { position: relative; padding: 96px 0 40px; overflow: hidden; }
-    .hero::before {
-      content: ""; position: absolute; top: 0; right: -15%;
-      width: 60%; height: 100%;
-      background: radial-gradient(ellipse at center, var(--cream-soft) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      position: relative; display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 72px; align-items: center;
-    }
-    .hero h1 { margin-bottom: 28px; }
-    .hero .lede { margin-bottom: 40px; }
-    .hero-ctas { display: flex; gap: 14px; align-items: center; margin-bottom: 44px; flex-wrap: wrap; }
-    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
-    .visual-frame {
-      position: relative; width: 100%; max-width: 440px; aspect-ratio: 4/5;
-      border-radius: var(--radius-lg); overflow: hidden; background: var(--ink);
-      box-shadow: 0 30px 80px -20px rgba(10,10,10,0.25), 0 8px 20px -6px rgba(10,10,10,0.12);
-    }
-    .visual-frame video, .visual-frame img.poster { width: 100%; height: 100%; object-fit: cover; }
-    .visual-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55) 100%); pointer-events: none; }
-    .visual-tag {
-      position: absolute; top: 18px; left: 18px;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
-      padding: 6px 12px; border-radius: 20px;
-      font-size: 11px; font-weight: 600; color: var(--ink); letter-spacing: 0.4px;
-    }
-    .visual-caption {
-      position: absolute; left: 20px; bottom: 18px; right: 20px;
-      color: #fff; font-size: 12px; font-weight: 500;
-      display: flex; align-items: center; gap: 10px; letter-spacing: 0.3px;
-    }
-    .live-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 4px rgba(232,164,58,0.25);
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.85); }
-    }
-    .stat-card {
-      position: absolute; background: #fff;
-      border: 1px solid var(--line); border-radius: 10px;
-      padding: 14px 18px; box-shadow: 0 16px 40px -12px rgba(10,10,10,0.18);
-    }
-    .stat-card-1 { top: 8%; left: -14%; display: flex; align-items: center; gap: 12px; }
-    .stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--alert); }
-    .stat-card-1 .stat-title { font-size: 12px; font-weight: 600; color: var(--ink); }
-    .stat-card-1 .stat-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-    .stat-card-2 { bottom: 10%; right: -14%; min-width: 195px; padding: 16px 18px; }
-    .stat-card-2 .sc2-label {
-      font-size: 10px; letter-spacing: 1.2px; color: var(--muted);
-      text-transform: uppercase; font-weight: 700;
-      padding-bottom: 10px; margin-bottom: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-    .stat-card-2 .sc2-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      font-size: 12px; line-height: 1.5;
-      padding: 3px 0;
-    }
-    .stat-card-2 .sc2-row span { color: var(--muted); font-weight: 500; }
-    .stat-card-2 .sc2-row strong { color: var(--ink); font-weight: 700; font-size: 13px; }
-    .stat-card-2 .sc2-row strong em {
-      font-style: normal; color: var(--success);
-      font-weight: 600; font-size: 10px;
-      margin-left: 4px; text-transform: uppercase; letter-spacing: 0.4px;
-    }
-    @media (max-width: 960px) {
-      .hero { padding: 56px 0 80px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { order: -1; }
-      .visual-frame { max-width: 320px; }
-      .stat-card { display: none; }
-    }
-  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -125,7 +51,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap nav">
     <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="PollenPal"></a>
     <a href="#newsletter" class="nav-cta nav-cta-ghost">Stay in touch</a>
-    <a href="#pilot" class="nav-cta nav-cta-login">Request a pilot</a>
     <a href="https://app.pollenpal.com" class="nav-cta">Beekeeper login →</a>
   </div>
 </header>
@@ -133,270 +58,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main id="main">
 
   <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-
-      <div class="hero-copy">
-        <div class="eyebrow">Physical AI for commercial apiaries &amp; farms</div>
-        <h1>Inspect every hive.<br><span class="serif-italic">Every</span> day.</h1>
-        <p class="lede">PollenPal watches every bee going in and out of your hive. It tracks colony activity in real time and flags varroa, africanization, and queen issues before they spread. Your crew treats the problem. They don't hunt for it.</p>
-        <div class="hero-ctas">
-          <a href="#pilot" class="btn btn-primary">Request a pilot →</a>
-          <a href="#how" class="btn btn-secondary">See how it works</a>
-        </div>
-        <div class="proof-row">
-          <div class="proof-item"><div class="proof-num">24/7</div><div class="proof-label">Continuous monitoring</div></div>
-          <div class="proof-item"><div class="proof-num">Per-hive</div><div class="proof-label">Not yard-level averages</div></div>
-          <div class="proof-item"><div class="proof-num">$0</div><div class="proof-label">Custom hive bodies</div></div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="visual-frame">
-          <video autoplay muted loop playsinline poster="/images/hero-poster.jpg" preload="metadata">
-            <source src="/images/hero.mp4" type="video/mp4">
-            <img class="poster" src="/images/hero-poster.jpg" alt="PollenPal monitored apiary">
-          </video>
-          <div class="visual-overlay"></div>
-        </div>
-        <div class="stat-card stat-card-1" aria-hidden="true">
-          <span class="stat-dot"></span>
-          <div>
-            <div class="stat-title">Varroa alert · Hive 14</div>
-            <div class="stat-sub">Detected 6 min ago</div>
-          </div>
-        </div>
-        <div class="stat-card stat-card-2" aria-hidden="true">
-          <div class="sc2-label">Hive 14 · Health</div>
-          <div class="sc2-row"><span>Mite count</span><strong>2 / 100 bees</strong></div>
-          <div class="sc2-row"><span>Activity</span><strong>87 / 100</strong></div>
-          <div class="sc2-row"><span>Last scan</span><strong>14s ago</strong></div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== PROBLEM ===== -->
-  <section id="problem" class="section problem">
+  <section class="direction-hero">
     <div class="wrap">
-      <div class="eyebrow center">The stakes</div>
-      <h2>Bees feed the world. But bees are <span class="serif-italic">dying faster</span> than food demand is growing.</h2>
-      <p class="lede center">Commercial beekeepers lose about 40% of their colonies every year. Manual inspection doesn't scale, and the two biggest killers are nearly impossible to catch by eye.</p>
-
-      <div class="problem-cards">
-        <div class="problem-card">
-          <h3>Varroa Mites</h3>
-          <p>These parasites spread deadly viruses through a colony before anyone notices. By the time you see the signs at your next inspection, the damage is already done. One infected hive can take down a yard in weeks.</p>
-        </div>
-        <div class="problem-card">
-          <h3>Africanization</h3>
-          <p>Invasive bees outcompete European colonies and turn gentle yards aggressive in a matter of weeks. Whole operations become unsafe to work, and you can't catch it without watching the hive entrance.</p>
-        </div>
-      </div>
-
-      <div class="inline-quote">
-        <p>"How the f**k can you get through 10,000 hives with 10 employees?"</p>
-        <cite>Kristen · Master Beekeeper, 20 years experience</cite>
-      </div>
-
-      <div class="stat-bar">
-        <span class="num">40%+</span> annual colony losses. <span class="num">$577B</span> in annual crop value at risk without pollinators.
-      </div>
+      <div class="eyebrow center">Built by beekeepers who like tech</div>
+      <h1>Every bee. Every hive.<br><span class="serif-italic">Every</span> day.</h1>
+      <p class="lede center">PollenPal keeps eyes on your hives, whether you run two colonies in the backyard or ten thousand across three states. Pick your path.</p>
     </div>
   </section>
 
-  <!-- ===== TESTIMONIAL BAND (moved up: real operator voice right after the stakes) ===== -->
-  <section class="testimonial">
+  <!-- ===== AUDIENCE DOORS ===== -->
+  <section class="direction">
     <div class="wrap">
-      <blockquote>"Identifying and treating Africanization early would be worth $100k a year to our operation."</blockquote>
-      <cite>Wendy · Blue Ridge Honey Co.</cite>
-    </div>
-  </section>
+      <div class="door-grid">
 
-  <!-- ===== HOW IT WORKS ===== -->
-  <section id="how" class="section bg-cream how">
-    <div class="wrap">
-      <div class="eyebrow center">How it works</div>
-      <h2>From bee to alert in minutes.</h2>
-      <p class="lede">No complicated setup. No new hive bodies. The PollenPal box drops into your existing operation and starts working on day one.</p>
+        <a class="door-card" href="/commercial">
+          <div class="door-label">Commercial operations</div>
+          <h2>Hardware + the full suite</h2>
+          <p>A solar-powered camera box watches every bee in and out of every hive, and AI flags varroa, africanization, and queen issues before they spread across a yard.</p>
+          <ul class="door-points">
+            <li>24/7 continuous monitoring</li>
+            <li>Per-hive alerts, not yard averages</li>
+            <li>Drops onto standard hives</li>
+          </ul>
+          <span class="btn btn-primary">See the system →</span>
+        </a>
 
-      <div class="how-grid">
-        <div class="step">
-          <img class="step-img" src="/images/device-deploy.jpg" alt="Beekeeper pulling a frame from a PollenPal base box in a working yard">
-          <div class="step-body">
-            <div class="step-num">01 · HARDWARE WATCHES</div>
-            <h3>Sits as the base of your hive</h3>
-            <p>A solar-powered PollenPal box becomes the bottom box of your hive stack. Its camera and sound sensors watch every bee in and out, 24/7. No WiFi needed. Solar and LTE handle the rest, even in remote yards.</p>
-          </div>
-        </div>
-        <div class="step">
-          <video class="step-img" autoplay muted loop playsinline preload="metadata" poster="/images/ml-detect-poster.jpg" aria-label="Raw hive entrance footage next to the same footage with PollenPal AI detecting and tracking each bee">
-            <source src="/images/ml-detect.mp4" type="video/mp4">
-          </video>
-          <div class="step-body">
-            <div class="step-num">02 · ML READS EVERY HIVE</div>
-            <h3>Colony activity, not just threats</h3>
-            <p>Our model tracks foraging traffic, bee count, and behavior patterns hive by hive. It flags varroa, africanization, and queen issues the same day they appear. You see baseline health, not just emergencies.</p>
-          </div>
-        </div>
-        <div class="step">
-          <video class="step-img step-img--anchor-left" autoplay muted loop playsinline preload="metadata" poster="/images/webapp-demo-poster.jpg" aria-label="PollenPal dashboard showing a live hive camera, activity and sound readings, and alerts">
-            <source src="/images/webapp-demo.mp4" type="video/mp4">
-          </video>
-          <div class="step-body">
-            <div class="step-num">03 · YOU GET AN ALERT</div>
-            <h3>Treat the problem, don't hunt for it</h3>
-            <p>When something looks wrong, your phone gets a notification. A clear explanation, a clear next step. No guessing. No waiting until the next yard visit.</p>
-          </div>
-        </div>
+        <a class="door-card" href="/hobbyist">
+          <div class="door-label">Hobbyist beekeepers</div>
+          <h2>The hive inspection app</h2>
+          <p>Log inspections from your phone, set reminders that fit your season, and keep every hive's story in one place. No hardware needed.</p>
+          <ul class="door-points">
+            <li>$4.99/month billed annually</li>
+            <li>Up to 10 hives</li>
+            <li>Free tap-to-log hive stickers</li>
+          </ul>
+          <span class="btn btn-gold">See the app →</span>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== WHY POLLENPAL ===== -->
-  <section id="advantage" class="section advantage">
+  <!-- ===== SHARED PROOF ===== -->
+  <section class="section-tight bg-cream direction-proof">
     <div class="wrap">
       <div class="eyebrow center">Why PollenPal</div>
-      <h2>Built for commercial scale, not science fairs.</h2>
-      <p class="lede">Every other tool makes you pick between cheap and blind (manual inspection) or expensive and generalized (six-figure systems that only average across the whole yard). PollenPal is the first that doesn't make you pick.</p>
-
-      <div class="advantage-grid">
-        <div class="adv-card">
-          <div class="adv-num">01</div>
-          <h3>Continuous, per-hive monitoring</h3>
-          <p>Manual inspection happens every few weeks. Smart-hive systems average across the whole yard. PollenPal watches every bee, every day, in every hive. You see colony activity in real time and you catch threats the day they appear, not the next yard visit.</p>
-        </div>
-        <div class="adv-card">
-          <div class="adv-num">02</div>
-          <h3>Drop-in hardware, no custom hive bodies</h3>
-          <p>Most smart-hive products cost thousands per colony and need a custom hive body to install. PollenPal's box uses off-the-shelf compute and sits under your standard 10-frame Langstroth. No adapters. No rewiring. Solar and LTE handle remote yards.</p>
-        </div>
-        <div class="adv-card">
-          <div class="adv-num">03</div>
-          <h3>A data moat that compounds</h3>
-          <p>Every PollenPal in the field improves the model for every other PollenPal. Our models have already logged 3.5M+ individual bee observations across 450,000 hive images from working pilots, and they get sharper with every frame.<span class="data-quote">"By digitizing apiaries, we're collecting data nobody else has. The model gets better with every bee we see."</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TRACTION ===== -->
-  <section id="traction" class="section bg-cream traction">
-    <div class="wrap">
-      <div class="eyebrow center">Traction</div>
-      <h2>Pilot-ready and proven in the field.</h2>
-      <p class="lede">Multiple seasons of field data with independent beekeepers across California and Florida, devices live in commercial yards today, and a hardware platform that's been through 25 design variations to get here.</p>
-
+      <h2>One data engine behind both.</h2>
+      <p class="lede center">Every PollenPal in the field sharpens the model for every beekeeper using it.</p>
       <div class="stat-strip">
-        <div class="stat"><div class="stat-num">3.5M+</div><div class="stat-label">Individual bee observations</div></div>
-        <div class="stat"><div class="stat-num">450k+</div><div class="stat-label">Hive images captured</div></div>
-        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Devices live in the field</div></div>
-        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Master Beekeeper advisors</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ROADMAP ===== -->
-  <section id="roadmap" class="section roadmap">
-    <div class="wrap">
-      <div class="eyebrow center">What's next</div>
-      <h2>From threat detection to <span class="serif-italic">autonomous</span> response.</h2>
-      <p class="lede">Today PollenPal catches problems. Next, it tells you exactly what to do about them. Then it does it for you.</p>
-
-      <div class="timeline">
-        <div class="tl-stage">
-          <div class="tl-dot"></div>
-          <div class="tl-pill">Shipping</div>
-          <div class="tl-year">2026</div>
-          <h3>Threat Detection</h3>
-          <p>Shipping to commercial pilots now. Varroa, africanization, and queen issues caught the day they appear.</p>
-        </div>
-        <div class="tl-stage">
-          <div class="tl-dot"></div>
-          <div class="tl-pill">Shipping</div>
-          <div class="tl-year">2026</div>
-          <h3>Insightful Recommendations</h3>
-          <p>Treatment timing, yard-level trends, and crew dispatch. Detection turned into action your crew can run with.</p>
-        </div>
-        <div class="tl-stage">
-          <div class="tl-dot"></div>
-          <div class="tl-pill">R&amp;D</div>
-          <div class="tl-year">2027</div>
-          <h3>Autonomous Response</h3>
-          <p>Closing the loop with in-hive interventions. The hive treats itself, and you show up when you want to.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOUNDERS NARRATIVE ===== -->
-  <section id="founders" class="founders bg-cream">
-    <div class="wrap-narrow">
-      <div class="eyebrow center">Who's building this</div>
-      <h2>Robert and Daniel have been building this story for <span class="serif-italic">seventeen years</span>.</h2>
-
-      <div class="founders-photos">
-        <figure>
-          <img src="/images/robert.jpg" alt="Robert Schulte">
-          <figcaption>Robert Schulte<span class="role">Co-founder, CEO</span></figcaption>
-        </figure>
-        <figure>
-          <img src="/images/daniel.jpg" alt="Daniel Drew">
-          <figcaption>Daniel Drew<span class="role">Co-founder, CTO</span></figcaption>
-        </figure>
-      </div>
-
-      <div class="founder-story">
-        <p>Robert started keeping bees when he was nine. By high school he had a half-dozen hives in his parents' backyard in Florida. By the time he finished an engineering degree at UF, he had over a decade of seasons behind him. Losing colonies the way every beekeeper loses colonies. Watching mites arrive. Watching queens fail. Watching a treatment work one year and stop working the next.</p>
-        <p>The summer before he started business school, Robert spent three months on the road. He drove from Florida to Vermont to Montana to California, sitting down with commercial beekeepers in their yards, their warehouses, and their pickup trucks. He kept hearing the same things. <em>Mites are spreading faster than we can inspect.</em> <em>Africanized bees are taking over yards in weeks.</em> <em>I've got 10,000 colonies and 10 employees and we can't keep up.</em></p>
-        <p>One of those conversations turned into the question Robert hasn't been able to put down since: <strong>what if every hive could tell you when something's wrong, before you lose it?</strong> Not after the next inspection. Not after the next yard visit. The same day.</p>
-        <p>Daniel is the answer to <em>how</em>. Robert and Daniel have been friends since UF, nine years of building things together. Daniel went on to manufacture orbital rockets at Blue Origin and now leads satellite delivery at Apex Space in Los Angeles. He knows how to build hardware that survives in places you can't fix later, which turns out to be exactly the problem with a bee box that has to live in a remote yard on solar power for a year at a time.</p>
-        <p>They started PollenPal at the kitchen table. They're building it the same way Robert learned to keep bees: by listening to the people who actually do the work, and refusing to ship anything that doesn't pull its weight in the field.</p>
-      </div>
-
-      <p class="founder-footnote">Built with guidance from 4 Master Beekeepers and a research team at Columbia University.</p>
-    </div>
-  </section>
-
-  <!-- ===== PILOT CTA ===== -->
-  <section id="pilot" class="pilot">
-    <div class="wrap">
-      <div class="eyebrow center">Run a pilot</div>
-      <h2>Deploy PollenPal on your yard.</h2>
-      <p class="lede">We're running pilots with commercial operators in 2026. Tell us about your operation and we'll be in touch within 2 business days.</p>
-
-      <div class="form-card">
-        <form id="pilotForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-          <div class="form-row">
-            <label for="p-name">Name *</label>
-            <input type="text" id="p-name" name="entry.455027715" required>
-          </div>
-          <div class="form-row">
-            <label for="p-email">Email *</label>
-            <input type="email" id="p-email" name="entry.414264367" required>
-          </div>
-          <div class="form-row">
-            <label>I am a *</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Hobbyist Beekeeper" required><span>Hobbyist Beekeeper</span></label>
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Commercial Beekeeper"><span>Commercial Beekeeper</span></label>
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Investor/Partner"><span>Investor / Partner</span></label>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="p-hives">Hive count</label>
-            <input type="text" id="p-hives" name="entry.355024465">
-          </div>
-          <div class="form-row">
-            <label for="p-msg">Tell us about your operation (please include your company / operation name)</label>
-            <textarea id="p-msg" name="entry.1292345725"></textarea>
-          </div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
-          <button type="submit">Request a pilot →</button>
-        </form>
-        <iframe name="hidden_iframe" style="display:none"></iframe>
+        <div class="stat"><div class="stat-num">14.25M+</div><div class="stat-label">Individual bee observations</div></div>
+        <div class="stat"><div class="stat-num">570k+</div><div class="stat-label">Hive images captured</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Continuous monitoring</div></div>
       </div>
     </div>
   </section>
@@ -428,22 +140,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-wordmark"><img src="/images/logo-icon.png" alt="">PollenPal</div>
-        <p>Physical AI for commercial apiaries and farms.</p>
+        <p>Hive intelligence for beekeepers.</p>
       </div>
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#advantage">Why PollenPal</a></li>
-          <li><a href="#roadmap">Roadmap</a></li>
-          <li><a href="#pilot">Request a pilot</a></li>
+          <li><a href="/commercial">Commercial</a></li>
+          <li><a href="/hobbyist">The app</a></li>
+          <li><a href="/merch">Merch</a></li>
         </ul>
       </div>
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="#founders">Founders</a></li>
-          <li><a href="/hobbyist">The app</a></li>
+          <li><a href="/commercial#founders">Founders</a></li>
+          <li><a href="https://app.pollenpal.com">Log in</a></li>
         </ul>
       </div>
       <div>

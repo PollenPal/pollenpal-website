@@ -1709,3 +1709,85 @@ sup.fn-ref a:hover { text-decoration: underline; }
   .nfc-sticker { width: 220px; height: 220px; }
   .nfc-sticker img { width: 132px; }
 }
+
+/* ===================================================================== */
+/* AUDIENCE BAND: slim cross-link under the header (/commercial)          */
+/* ===================================================================== */
+.audience-band {
+  background: var(--cream-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+.audience-band a { color: var(--gold-dark); font-weight: 600; }
+.audience-band a:hover { color: var(--ink); }
+
+/* ===================================================================== */
+/* DIRECTION HOMEPAGE: hero + audience door cards (/)                     */
+/* ===================================================================== */
+.direction-hero {
+  position: relative;
+  padding: 96px 0 16px;
+  text-align: center;
+  overflow: hidden;
+}
+.direction-hero::before {
+  content: ""; position: absolute; top: -30%; left: 50%;
+  transform: translateX(-50%);
+  width: 80%; height: 130%;
+  background: radial-gradient(ellipse at center, var(--cream-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.direction-hero .wrap { position: relative; }
+.direction-hero h1 { max-width: 900px; margin: 0 auto 20px; }
+.direction-hero .lede { max-width: 620px; }
+
+.direction { padding: 48px 0 104px; }
+.door-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+.door-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.door-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 50px -18px rgba(10, 10, 10, 0.15);
+}
+.door-label {
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin-bottom: 14px;
+}
+.door-card h2 { font-size: 26px; margin-bottom: 12px; }
+.door-card p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+.door-points { list-style: none; margin: 0 0 28px; padding: 0; }
+.door-points li { font-size: 13px; color: var(--muted); padding: 3px 0; }
+.door-points li::before { content: "·"; color: var(--gold-dark); font-weight: 700; margin-right: 8px; }
+.door-card .btn { margin-top: auto; }
+
+.direction-proof h2 { text-align: center; margin-bottom: 20px; }
+.direction-proof .lede { margin: 0 auto 56px; }
+
+@media (max-width: 900px) {
+  .direction-hero { padding-top: 56px; }
+  .direction { padding: 32px 0 80px; }
+  .door-grid { grid-template-columns: 1fr; }
+  .door-card { padding: 32px 26px; }
+}
