@@ -1760,39 +1760,30 @@ sup.fn-ref a:hover { text-decoration: underline; }
 .gate-doors {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%; max-width: 860px;
+  gap: 18px;
+  width: 100%; max-width: 620px;
 }
 .gate-door {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 30px 30px 26px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.gate-door-title {
-  font-size: 21px;
+  padding: 26px 30px;
+  font-size: 23px;
   font-weight: 700;
   letter-spacing: -0.015em;
-  line-height: 1.15;
   color: var(--ink);
+  transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
 }
 .gate-door:hover, .gate-door:focus-visible {
   transform: translateY(-3px);
   box-shadow: 0 24px 60px -20px rgba(0,0,0,0.5);
-}
-.gate-door-label {
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 1.4px; text-transform: uppercase;
   color: var(--gold-dark);
 }
-.gate-door-sub { color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
-.gate-door-go { margin-top: 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
-.gate-door:hover .gate-door-go { color: var(--gold-dark); }
+.gate-door-arrow { font-weight: 600; }
 .gate-login {
   color: rgba(255,255,255,0.85);
-  font-size: 14px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
 }
 .gate-login:hover { color: #fff; }
 @media (max-width: 720px) {

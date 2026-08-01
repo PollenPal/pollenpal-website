@@ -71,7 +71,6 @@
         card.innerHTML =
           '<div class="form-success">' +
           '<h3>Thanks, we\'ll be in touch.</h3>' +
-          '<p>We\'ll respond within 2 business days.</p>' +
           '</div>';
       }, 600);
     });
