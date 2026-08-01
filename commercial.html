@@ -22,7 +22,7 @@
   <title>PollenPal · Physical AI for commercial apiaries</title>
   <meta name="description" content="PollenPal watches every bee in and out of your hive. It tracks colony activity in real time and flags critical threats like varroa, swarming, and queen issues before they spread. Pilot-ready in 2026.">
   <meta property="og:title" content="PollenPal · Physical AI for commercial apiaries">
-  <meta property="og:description" content="Inspect every hive. Every day. Continuous monitoring for commercial beekeeping operations.">
+  <meta property="og:description" content="Hive management at scale, made simple. Continuous monitoring for commercial beekeeping operations.">
   <meta property="og:image" content="/images/hero-poster.jpg">
   <link rel="icon" href="/images/logo-icon.png">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -33,6 +33,8 @@
   <style>
     /* Critical hero CSS, inlined for first paint */
     .hero { position: relative; padding: 96px 0 40px; overflow: hidden; }
+    /* Longer headline than the site default; step the scale down a notch */
+    .hero h1 { font-size: clamp(40px, 4.8vw, 68px); }
     .hero::before {
       content: ""; position: absolute; top: 0; right: -15%;
       width: 60%; height: 100%;
@@ -141,9 +143,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap hero-grid">
 
       <div class="hero-copy">
-        <div class="eyebrow">Physical AI for commercial apiaries &amp; farms</div>
-        <h1>Inspect every hive.<br><span class="serif-italic">Every</span> day.</h1>
-        <p class="lede">PollenPal watches every bee going in and out of your hive. It tracks colony activity in real time and flags critical threats like varroa, swarming, and queen issues before they spread. Your crew treats the problem. They don't hunt for it.</p>
+        <div class="eyebrow">Built by beekeepers who like tech</div>
+        <h1>Hive management at scale, made <span class="serif-italic">simple</span>.</h1>
+        <p class="lede">Real physical AI that works, built by beekeepers. PollenPal watches every bee in and out of every hive and tells you which ones need your attention most, so you know when and where to act.</p>
         <div class="hero-ctas">
           <a href="#pilot" class="btn btn-primary">Request a pilot →</a>
           <a href="#how" class="btn btn-secondary">See how it works</a>
@@ -161,14 +163,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="stat-card stat-card-1" aria-hidden="true">
           <span class="stat-dot"></span>
           <div>
-            <div class="stat-title">Varroa alert · Hive 14</div>
-            <div class="stat-sub">Detected 6 min ago</div>
+            <div class="stat-title">Yellow jacket detected · Hive 14</div>
+            <div class="stat-sub">Alert sent 6 min ago</div>
           </div>
         </div>
         <div class="stat-card stat-card-2" aria-hidden="true">
           <div class="sc2-label">Hive 14 · Health</div>
-          <div class="sc2-row"><span>Mite count</span><strong>2 / 100 bees</strong></div>
-          <div class="sc2-row"><span>Activity</span><strong>87 / 100</strong></div>
+          <div class="sc2-row"><span>Frames of bees</span><strong>9 <em>Building</em></strong></div>
+          <div class="sc2-row"><span>Activity</span><strong>Busy</strong></div>
           <div class="sc2-row"><span>Last scan</span><strong>14s ago</strong></div>
         </div>
       </div>
@@ -259,6 +261,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="eyebrow center">Why PollenPal</div>
       <h2>Built for commercial scale, not science fairs.</h2>
       <p class="lede">Every other tool makes you pick between cheap and blind (manual inspection) or expensive and generalized (six-figure systems that only average across the whole yard). PollenPal is the first that doesn't make you pick.</p>
+
+      <div class="advantage-visual">
+        <video autoplay muted loop playsinline preload="metadata" poster="/images/explainer-poster.jpg" aria-label="Animated explainer: the PollenPal unit slides into a standard hive box, its camera watches bees at the entrance, and temperature, VOC, and acoustic sensors monitor the colony">
+          <source src="/images/explainer.mp4" type="video/mp4">
+        </video>
+      </div>
 
       <div class="advantage-grid">
         <div class="adv-card">

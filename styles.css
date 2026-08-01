@@ -1813,3 +1813,12 @@ sup.fn-ref a:hover { text-decoration: underline; }
 .testimonial--cream::before { display: none; }
 .testimonial--cream blockquote { color: var(--ink); }
 .testimonial--cream cite { color: var(--gold-dark); }
+
+/* Explainer animation in the Why PollenPal section (/commercial) */
+.advantage-visual { max-width: 720px; margin: 0 auto 72px; }
+.advantage-visual video {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+}
