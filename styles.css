@@ -1709,3 +1709,97 @@ sup.fn-ref a:hover { text-decoration: underline; }
   .nfc-sticker { width: 220px; height: 220px; }
   .nfc-sticker img { width: 132px; }
 }
+
+/* ===================================================================== */
+/* AUDIENCE BAND: slim cross-link under the header (/commercial)          */
+/* ===================================================================== */
+.audience-band {
+  background: var(--cream-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+.audience-band a { color: var(--gold-dark); font-weight: 600; }
+.audience-band a:hover { color: var(--ink); }
+
+/* ===================================================================== */
+/* DIRECTION GATE (/): full-viewport chooser over the apiary loop         */
+/* ===================================================================== */
+.gate-page { min-height: 100svh; }
+.gate-bg {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.gate-scrim {
+  position: fixed; inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 45%, rgba(10,10,10,0.72) 100%);
+}
+.gate {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 34px;
+  padding: 48px var(--gutter);
+  text-align: center;
+}
+.gate-brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
+}
+.gate-brand img { height: 40px; width: auto; border-radius: 9px; }
+.gate h1 {
+  color: #fff;
+  font-size: clamp(34px, 5vw, 56px);
+  text-shadow: 0 2px 24px rgba(10,10,10,0.35);
+}
+.gate-doors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%; max-width: 860px;
+}
+.gate-door {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 30px 30px 26px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.gate-door-title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.gate-door:hover, .gate-door:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.5);
+}
+.gate-door-label {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.gate-door-sub { color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
+.gate-door-go { margin-top: 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
+.gate-door:hover .gate-door-go { color: var(--gold-dark); }
+.gate-login {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px; font-weight: 600;
+}
+.gate-login:hover { color: #fff; }
+@media (max-width: 720px) {
+  .gate { gap: 26px; }
+  .gate-doors { grid-template-columns: 1fr; max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-bg { display: none; }
+  .gate-page { background: var(--ink) url('/images/hero-poster.jpg') center/cover no-repeat; }
+}
