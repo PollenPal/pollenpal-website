@@ -2,6 +2,16 @@
 
 Date: 2026-08-01. Approved by Robert in-session.
 
+## Copy sources (added 2026-08-01 after Robert dropped two new decks)
+
+- **Investor deck v10** (`C:\projects\pollenpal\PollenPal v10.pdf`, 2026-08-01)
+  supersedes v9 as the source for commercial numbers and claims. The deck is
+  confidential; only marketing-safe claims go on the public site (traction stats,
+  design-variation count, roadmap). Never P&L, ACV, unit costs, or market sizing.
+- **Hobbyist sales deck** (`C:\projects\pollenpal\Hobbyist App Sales Ready.pdf`,
+  2026-07-22) supersedes the 2026-07-13 v1 deck as the voice/flow source for
+  `/hobbyist`.
+
 ## Goal
 
 A beekeeper landing on pollenpal.com today gets the full commercial pitch; the only
@@ -36,9 +46,9 @@ Section order:
      `/commercial`.
    - **Hobbyist**: the inspection app, no hardware, from $4.99/mo; CTA "See the
      app" to `/hobbyist`.
-4. **Proof strip**: audience-neutral stats only (3.5M+ bee observations, 450k+ hive
-   images). No Wendy quote here; it is commercial-specific and stays with the
-   commercial content.
+4. **Proof strip**: audience-neutral stats only, at v10 values (14.25M+ individual
+   bee observations, 570K+ hive images). No Wendy quote here; it is
+   commercial-specific and stays with the commercial content.
 5. **Stay in touch** newsletter band (existing component, `#newsletter` anchor stays
    on `/`).
 6. **Footer**: updated links (Commercial, The app, Merch, contact).
@@ -59,24 +69,44 @@ the commercial anchors that used to live on the homepage (`#problem`, `#how`,
   `/` and to the app page); one new cross-link, a slim band directly under the
   header: "Keeping a few hives at home? See the app" to `/hobbyist`.
 - The pilot request form stays here, same Google Form endpoint and field names.
-- No copy revisions in this pass. Content fixes go on the audit list (below).
+- **Number sync to deck v10** (audit finding, Robert asked for consistency before
+  building): 3.5M+ bee observations becomes 14.25M+; 450k/450,000 hive images
+  becomes 570K+ (advantage card 3 and the traction strip); the "4 devices live in
+  the field" traction tile becomes "3 commercial yards running PollenPal devices"
+  per the v10 traction slide. The "4 Master Beekeeper advisors" tile and founders
+  footnote stay (previously Robert-approved, not contradicted by v10, which names
+  one Master Beekeeper advisor without a count); flagged in the report.
+- No other copy revisions in this pass. Everything already consistent with v10 was
+  verified 2026-08-01: problem stats (40%+, $577B), 25 design variations, CA+FL
+  multiple seasons, roadmap stages/years, "Physical AI" eyebrow.
 
 ## Page: `/hobbyist` (copy pass, PR 2)
 
-Reword following the hobbyist selling deck v1
-(`C:\projects\pollenpal\hobbyist-deck\`, spec `2026-07-13-hobbyist-deck-design.md`):
-records pain, Karen quote, what PollenPal is, NFC "tap the hive, see its story",
-"a season with PollenPal" steps 0-4 (including "hand your phone to your mentor"),
-coffee-price close.
+Reword following the **Hobbyist App Sales Ready deck** (2026-07-22): built by
+beekeepers who like tech; notebook pain ("a notebook never tells you: it's time to
+inspect, your mite test is due"); what PollenPal is (hives, inspections, records,
+reports, alerts); tap-inspect-done NFC story; customize your hives (colors,
+photos); reminders that fit your climate; "your future self will thank you";
+"the best beekeepers don't rely on memory, they rely on data"; coffee-price close.
 
 - Page structure (screenshot feature rows, NFC perk, pricing, FAQ, CTAs to
   app.pollenpal.com) stays. This is a wording and sequencing pass, not a rebuild.
-- Deck hard rules carry over: software only, zero hardware mentions; no timing
-  promises ("under a minute" banned); no claims for unshipped features.
-- Verify every claim against the live app before writing it: badges shipped since
-  the deck was written (#550), so the no-badge rule may have relaxed; the
-  no-push-reminders rule and current pricing ($4.99/mo annual, $7.99/mo monthly,
-  up to 10 hives) must be re-confirmed against the live app.
+- Claim verification done 2026-08-01. TRUE and usable: custom reminders with dates,
+  annual repeat, seasonal presets, day-14 mite retest prompt, push notifications,
+  overdue-inspection alert (all shipped, PRs #260/#432/#433/#435); season-end
+  "Annual report" (shipped #489; NEVER the word "Almanac"); mite counts in the
+  inspection form; queen names and performance tracking; hive colors and photos;
+  free NFC stickers plus a phone stylus mailed (insert built 2026-08-01);
+  up to 10 hives; $7.99/mo or $4.99/mo annual.
+- FALSE or unverified, do NOT use: "syncs automatically when you're back in range"
+  (only local draft autosave is verified; soften to "every tap is saved as you go");
+  the deck's "$59.99/year" (Stripe truth is one $59.88/yr charge; site keeps
+  $59.88); the deck's "Hive Management System" tagline (banned phrase; the app's
+  approved self-description is "The hive operating system for beekeepers", and the
+  marketing-site tagline "The hive inspection app" stays unless Robert says
+  otherwise).
+- Deck typos ("CHALLANGE", "figer tips", "Pollen Pal") are not carried over; deck
+  em dashes are not carried over.
 - Add cross-link: "Running a commercial operation? See the system" to `/commercial`.
 
 ## Link updates
@@ -109,9 +139,10 @@ coffee-price close.
 - **PR 1 (restructure)**: new `/`, content move to `/commercial`, link updates,
   anchor forwarding, meta.
 - **PR 2 (hobbyist copy)**: deck-informed rewording of `/hobbyist`.
-- **Audit list** delivered alongside PR 1: stale claims and content fixes found on
-  both pages (for example the "4 devices live" traction stat) for Robert to
-  green-light as follow-ups. Not implemented in either PR without approval.
+- **Audit** (done 2026-08-01, pre-build per Robert): stale v10 numbers are fixed in
+  PR 1. Remaining open items go in the final report: the deck's $59.99 vs Stripe's
+  $59.88; the "4 Master Beekeeper advisors" count absent from v10; the optional
+  yellow jacket case study (v10 slide 8) as a future commercial-page addition.
 
 ## Out of scope
 
