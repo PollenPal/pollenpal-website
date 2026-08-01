@@ -1725,71 +1725,76 @@ sup.fn-ref a:hover { text-decoration: underline; }
 .audience-band a:hover { color: var(--ink); }
 
 /* ===================================================================== */
-/* DIRECTION HOMEPAGE: hero + audience door cards (/)                     */
+/* DIRECTION GATE (/): full-viewport chooser over the apiary loop         */
 /* ===================================================================== */
-.direction-hero {
-  position: relative;
-  padding: 96px 0 16px;
+.gate-page { min-height: 100svh; }
+.gate-bg {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.gate-scrim {
+  position: fixed; inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 45%, rgba(10,10,10,0.72) 100%);
+}
+.gate {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 34px;
+  padding: 48px var(--gutter);
   text-align: center;
-  overflow: hidden;
 }
-.direction-hero::before {
-  content: ""; position: absolute; top: -30%; left: 50%;
-  transform: translateX(-50%);
-  width: 80%; height: 130%;
-  background: radial-gradient(ellipse at center, var(--cream-soft) 0%, transparent 70%);
-  pointer-events: none;
+.gate-brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
 }
-.direction-hero .wrap { position: relative; }
-.direction-hero h1 { max-width: 900px; margin: 0 auto 20px; }
-.direction-hero .lede { max-width: 620px; }
-
-.direction { padding: 48px 0 104px; }
-.door-grid {
+.gate-brand img { height: 40px; width: auto; border-radius: 9px; }
+.gate h1 {
+  color: #fff;
+  font-size: clamp(34px, 5vw, 56px);
+  text-shadow: 0 2px 24px rgba(10,10,10,0.35);
+}
+.gate-doors {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  max-width: 1020px;
-  margin: 0 auto;
+  gap: 20px;
+  width: 100%; max-width: 780px;
 }
-.door-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: var(--bg);
+.gate-door {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 40px 36px;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  padding: 30px 28px 26px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.door-card:hover {
+.gate-door:hover, .gate-door:focus-visible {
   transform: translateY(-3px);
-  border-color: var(--gold);
-  box-shadow: 0 20px 50px -18px rgba(10, 10, 10, 0.15);
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.5);
 }
-.door-label {
-  font-size: 12px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  font-weight: 700;
+.gate-door-label {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.4px; text-transform: uppercase;
   color: var(--gold-dark);
-  margin-bottom: 14px;
 }
-.door-card h2 { font-size: 26px; margin-bottom: 12px; }
-.door-card p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
-.door-points { list-style: none; margin: 0 0 28px; padding: 0; }
-.door-points li { font-size: 13px; color: var(--muted); padding: 3px 0; }
-.door-points li::before { content: "·"; color: var(--gold-dark); font-weight: 700; margin-right: 8px; }
-.door-card .btn { margin-top: auto; }
-
-.direction-proof h2 { text-align: center; margin-bottom: 20px; }
-.direction-proof .lede { margin: 0 auto 56px; }
-
-@media (max-width: 900px) {
-  .direction-hero { padding-top: 56px; }
-  .direction { padding: 32px 0 80px; }
-  .door-grid { grid-template-columns: 1fr; }
-  .door-card { padding: 32px 26px; }
+.gate-door-sub { color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
+.gate-door-go { margin-top: 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
+.gate-door:hover .gate-door-go { color: var(--gold-dark); }
+.gate-login {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px; font-weight: 600;
+}
+.gate-login:hover { color: #fff; }
+@media (max-width: 720px) {
+  .gate { gap: 26px; }
+  .gate-doors { grid-template-columns: 1fr; max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-bg { display: none; }
+  .gate-page { background: var(--ink) url('/images/hero-poster.jpg') center/cover no-repeat; }
 }
 
 /* ===================================================================== */

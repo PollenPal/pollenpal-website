@@ -6,7 +6,7 @@
   <script>
     // Commercial content moved to /commercial; forward stale deep links.
     (function () {
-      var moved = ['problem', 'how', 'advantage', 'traction', 'roadmap', 'founders', 'pilot'];
+      var moved = ['problem', 'how', 'advantage', 'traction', 'roadmap', 'founders', 'pilot', 'newsletter'];
       var h = location.hash.replace('#', '');
       if (moved.indexOf(h) !== -1) location.replace('/commercial#' + h);
     })();
@@ -33,143 +33,41 @@
   <meta property="og:description" content="Hive intelligence for beekeepers. Camera hardware and monitoring for commercial operations, and a simple inspection app for hobbyists.">
   <meta property="og:image" content="/images/hero-poster.jpg">
   <link rel="icon" href="/images/logo-icon.png">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="gate-page">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK6LX9R4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<a href="#main" class="skip-link">Skip to content</a>
+<video class="gate-bg" autoplay muted loop playsinline poster="/images/hero-poster.jpg" preload="auto" aria-hidden="true">
+  <source src="/images/hero.mp4" type="video/mp4">
+</video>
+<div class="gate-scrim" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="PollenPal"></a>
-    <a href="#newsletter" class="nav-cta nav-cta-ghost">Stay in touch</a>
-    <a href="https://app.pollenpal.com" class="nav-cta">Beekeeper login →</a>
+<main class="gate">
+  <div class="gate-brand"><img src="/images/logo-icon.png" alt="">PollenPal</div>
+  <h1>Which beekeeper are you?</h1>
+
+  <div class="gate-doors">
+    <a class="gate-door" href="/commercial">
+      <span class="gate-door-label">Commercial operation</span>
+      <span class="gate-door-sub">Camera hardware and the full monitoring suite</span>
+      <span class="gate-door-go">See the system →</span>
+    </a>
+    <a class="gate-door" href="/hobbyist">
+      <span class="gate-door-label">Hobbyist beekeeper</span>
+      <span class="gate-door-sub">The inspection app. No hardware needed.</span>
+      <span class="gate-door-go">See the app →</span>
+    </a>
   </div>
-</header>
 
-<main id="main">
-
-  <!-- ===== HERO ===== -->
-  <section class="direction-hero">
-    <div class="wrap">
-      <div class="eyebrow center">Built by beekeepers who like tech</div>
-      <h1>Every bee. Every hive.<br><span class="serif-italic">Every</span> day.</h1>
-      <p class="lede center">PollenPal keeps eyes on your hives, whether you run two colonies in the backyard or ten thousand across three states. Pick your path.</p>
-    </div>
-  </section>
-
-  <!-- ===== AUDIENCE DOORS ===== -->
-  <section class="direction">
-    <div class="wrap">
-      <div class="door-grid">
-
-        <a class="door-card" href="/commercial">
-          <div class="door-label">Commercial operations</div>
-          <h2>Hardware + the full suite</h2>
-          <p>A solar-powered camera box watches every bee in and out of every hive, and AI flags varroa, africanization, and queen issues before they spread across a yard.</p>
-          <ul class="door-points">
-            <li>24/7 continuous monitoring</li>
-            <li>Per-hive alerts, not yard averages</li>
-            <li>Drops onto standard hives</li>
-          </ul>
-          <span class="btn btn-primary">See the system →</span>
-        </a>
-
-        <a class="door-card" href="/hobbyist">
-          <div class="door-label">Hobbyist beekeepers</div>
-          <h2>The hive inspection app</h2>
-          <p>Log inspections from your phone, set reminders that fit your season, and keep every hive's story in one place. No hardware needed.</p>
-          <ul class="door-points">
-            <li>$4.99/month billed annually</li>
-            <li>Up to 10 hives</li>
-            <li>Free tap-to-log hive stickers</li>
-          </ul>
-          <span class="btn btn-gold">See the app →</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SHARED PROOF ===== -->
-  <section class="section-tight bg-cream direction-proof">
-    <div class="wrap">
-      <div class="eyebrow center">Why PollenPal</div>
-      <h2>One data engine behind both.</h2>
-      <p class="lede center">Every PollenPal in the field sharpens the model for every beekeeper using it.</p>
-      <div class="stat-strip">
-        <div class="stat"><div class="stat-num">14.25M+</div><div class="stat-label">Individual bee observations</div></div>
-        <div class="stat"><div class="stat-num">570k+</div><div class="stat-label">Hive images captured</div></div>
-        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Continuous monitoring</div></div>
-      </div>
-    </div>
-  </section>
-
+  <a class="gate-login" href="https://app.pollenpal.com">Beekeeper login →</a>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-
-    <div class="footer-newsletter" id="newsletter">
-      <div class="footer-newsletter-copy">
-        <h3>Stay in touch.</h3>
-        <p>Occasional updates on what we're shipping, what we're learning, and where we'll be in the field. No spam.</p>
-      </div>
-      <div class="footer-newsletter-form-wrap">
-        <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdT98RF4UgkrU8RsYQ9yk9aVOO_F7xNktjant5XbnB6q_x0lQ/formResponse" method="POST" target="hidden_iframe_newsletter" data-success-title="You're on the list." data-success-body="Watch your inbox for occasional updates from PollenPal.">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-          <label class="visually-hidden" for="nl-name">Name</label>
-          <input type="text" id="nl-name" name="entry.1325735936" placeholder="Name" required>
-          <label class="visually-hidden" for="nl-email">Email</label>
-          <input type="email" id="nl-email" name="entry.205724635" placeholder="you@example.com" required>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
-          <button type="submit">Subscribe →</button>
-        </form>
-        <iframe name="hidden_iframe_newsletter" style="display:none"></iframe>
-      </div>
-    </div>
-
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-wordmark"><img src="/images/logo-icon.png" alt="">PollenPal</div>
-        <p>Hive intelligence for beekeepers.</p>
-      </div>
-      <div>
-        <h4>Product</h4>
-        <ul>
-          <li><a href="/commercial">Commercial</a></li>
-          <li><a href="/hobbyist">The app</a></li>
-          <li><a href="/merch">Merch</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/commercial#founders">Founders</a></li>
-          <li><a href="https://app.pollenpal.com">Log in</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@pollenpal.com">hello@pollenpal.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © 2026 PollenPal, Inc.
-    </div>
-  </div>
-</footer>
-
-<script src="/scripts.js" defer></script>
 </body>
 </html>
