@@ -1791,3 +1791,29 @@ sup.fn-ref a:hover { text-decoration: underline; }
   .door-grid { grid-template-columns: 1fr; }
   .door-card { padding: 32px 26px; }
 }
+
+/* ===================================================================== */
+/* HOBBYIST: "a notebook never tells you" pain section                    */
+/* ===================================================================== */
+.notebook { text-align: center; }
+.notebook h2 { margin-bottom: 36px; }
+.notebook-lines p {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--muted);
+  padding: 6px 0;
+}
+.notebook-kicker {
+  margin-top: 28px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+/* Cream variant of the testimonial band (hobbyist Karen quote). The base
+   .testimonial paints a dark photo overlay via ::before; this variant is a
+   flat cream band with ink text. */
+.testimonial--cream { background: var(--cream-soft); }
+.testimonial--cream::before { display: none; }
+.testimonial--cream blockquote { color: var(--ink); }
+.testimonial--cream cite { color: var(--gold-dark); }
