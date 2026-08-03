@@ -1744,7 +1744,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
   display: inline-flex; align-items: center; gap: 12px;
   color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
 }
-.gate-brand img { height: 44px; width: auto; }
+.gate-brand img { height: 44px; width: auto; filter: drop-shadow(0 2px 16px rgba(10,10,10,0.45)); }
 .gate h1 {
   color: #fff;
   font-size: clamp(34px, 5vw, 56px);
