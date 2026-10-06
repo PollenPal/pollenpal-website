@@ -1838,3 +1838,114 @@ sup.fn-ref a:hover { text-decoration: underline; }
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
 }
+
+/* ===================================================================== */
+/* HOMEPAGE (/): one mission line, real footage, audience paths in nav    */
+/* ===================================================================== */
+.home a:focus-visible,
+.site-header a:focus-visible {
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 3px;
+}
+
+/* Hero: copy on the left edge of the wrap, footage bleeds to the viewport edge */
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: min(760px, calc(100svh - 69px));
+  border-bottom: 1px solid var(--line);
+}
+.home-hero-copy {
+  align-self: center;
+  padding: 72px 64px 72px max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
+}
+.home-hero h1 {
+  font-size: clamp(44px, 5.4vw, 80px);
+  max-width: 9em;
+  margin-bottom: 28px;
+}
+/* Marker note above the headline, written the way beekeepers mark a hive lid */
+.home-lidnote {
+  font-family: "Covered By Your Grace", cursive;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1;
+  color: var(--ink);
+  transform: rotate(-2.5deg);
+  transform-origin: left bottom;
+  margin: 0 0 18px 4px;
+}
+.home-hero .lede { max-width: 34em; }
+.home-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.home-hero-media { position: relative; overflow: hidden; background: var(--ink); }
+.home-hero-media video,
+.home-hero-media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+/* Proof: numbers from /commercial, then accolades */
+.home-proof { background: var(--cream-soft); border-bottom: 1px solid var(--line); padding: 44px 0; }
+.home-proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.home-proof-item { border-left: 2px solid var(--gold); padding-left: 16px; }
+.home-proof-num { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.home-proof-label { font-size: 14px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.home-accolades {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px;
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px; color: var(--ink-soft);
+}
+.home-accolades img { height: 30px; width: auto; mix-blend-mode: multiply; }
+
+/* Two audience paths */
+.home-paths { padding: 120px 0; }
+.home-paths-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.home-path img {
+  width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+.home-path-body { padding-top: 28px; }
+.home-path-who { font-size: 15px; font-weight: 600; color: var(--gold-dark); margin-bottom: 10px; }
+.home-path h2 { font-size: clamp(28px, 3vw, 40px); margin-bottom: 14px; }
+.home-path p { color: var(--ink-soft); max-width: 32em; }
+.home-path-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+/* What the camera sees */
+.home-see { background: var(--ink); color: #fff; padding: 120px 0; }
+.home-see-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
+.home-see video { width: 100%; border-radius: var(--radius-lg); }
+.home-see h2 { color: #fff; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1; margin-bottom: 24px; }
+.home-see p { color: rgba(255,255,255,0.75); max-width: 32em; }
+
+/* Company */
+.home-company { padding: 120px 0; }
+.home-company-grid { display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center; }
+.home-company h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1; margin-bottom: 24px; max-width: 14em; }
+.home-company p { color: var(--ink-soft); max-width: 34em; margin-bottom: 16px; }
+.home-company .founders-photos { margin-bottom: 0; }
+.home-text-link { font-weight: 600; color: var(--gold-dark); border-bottom: 1px solid currentColor; }
+.home-text-link:hover { color: var(--ink); }
+
+/* Contact: investors, partners, press */
+.home-contact { background: var(--cream-soft); border-top: 1px solid var(--line); padding: 120px 0; }
+.home-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.home-contact h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1; margin-bottom: 20px; }
+.home-contact p { color: var(--ink-soft); max-width: 30em; }
+.home-contact .form-card { margin: 0; border: 1px solid var(--line); }
+
+@media (max-width: 960px) {
+  .home-hero { grid-template-columns: 1fr; min-height: 0; }
+  .home-hero-media { order: -1; height: min(52svh, 480px); min-height: 320px; }
+  .home-hero-copy { padding: 48px var(--gutter) 56px; }
+  .home-proof-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .home-paths, .home-see, .home-company, .home-contact { padding: 72px 0; }
+  .home-paths-grid, .home-see-grid, .home-company-grid, .home-contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .home-company .founders-photos { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-media video { display: none; }
+  .home-hero-media { background: var(--ink) url('/images/home-hero-poster.jpg') center 45% / cover no-repeat; }
+}
