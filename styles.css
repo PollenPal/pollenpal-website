@@ -1926,6 +1926,8 @@ sup.fn-ref a:hover { text-decoration: underline; }
 .home-company h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1; margin-bottom: 24px; max-width: 14em; }
 .home-company p { color: var(--ink-soft); max-width: 34em; margin-bottom: 16px; }
 .home-company .founders-photos { margin-bottom: 0; }
+/* Level the two faces: Robert's source photo is a taller crop, so shift it up to match Daniel's eye line */
+.home-company .founders-photos figure:first-child img { object-position: center 57%; }
 .home-text-link { font-weight: 600; color: var(--gold-dark); border-bottom: 1px solid currentColor; }
 .home-text-link:hover { color: var(--ink); }
 
