@@ -1860,8 +1860,8 @@ sup.fn-ref a:hover { text-decoration: underline; }
   padding: 72px 64px 72px max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
 }
 .home-hero h1 {
-  font-size: clamp(44px, 5.4vw, 80px);
-  max-width: 9em;
+  font-size: clamp(44px, 4.5vw, 64px);
+  max-width: 11em;
   margin-bottom: 28px;
 }
 /* Marker note above the headline, written the way beekeepers mark a hive lid */
@@ -1874,6 +1874,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
   transform-origin: left bottom;
   margin: 0 0 18px 4px;
 }
+.home-hero h1 .keep { white-space: nowrap; }
 .home-hero .lede { max-width: 34em; }
 .home-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
 .home-hero-media { position: relative; overflow: hidden; background: var(--ink); }
