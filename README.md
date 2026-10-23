@@ -19,3 +19,7 @@ Copy `ig/index.html` to a new lowercase folder (for example `x/index.html`), rep
 ## Campaign tags reaching the app
 
 `utm.js` (loaded on the homepage, `/hobbyist`, `/commercial`, and `/merch`) stores any `utm_*` values from the landing URL for the browser session and appends them to every link that points at `app.pollenpal.com`, so the app can record where a sign-up came from. `/signup/` forwards its query string for the same reason.
+
+## Planning documents
+
+The design specs, plans and the pre-2026 site that used to live in `docs/` and `archive/` were removed from this public repository on 2026-10-22 because GitHub Pages served them as live pages. They now live outside git in the PollenPal notes folder (`notes/website-docs-archive-2026-10/`). Nothing on the live site linked to either folder.
