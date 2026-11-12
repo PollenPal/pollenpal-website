@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="/styles.css">
   <style>
     /* Critical hero CSS, inlined for first paint */
-    .hero { position: relative; padding: 96px 0 40px; overflow: hidden; }
+    .hero { position: relative; padding: 48px 0 56px; overflow: hidden; }
+    .hero-copy { padding-top: 40px; }
     /* Longer headline than the site default; step the scale down a notch */
     .hero h1 { font-size: clamp(40px, 4.8vw, 68px); }
     .hero::before {
@@ -44,11 +45,11 @@
     .hero-grid {
       position: relative; display: grid;
       grid-template-columns: 1.15fr 1fr;
-      gap: 72px; align-items: center;
+      gap: 64px; align-items: start;
     }
     .hero h1 { margin-bottom: 28px; }
-    .hero .lede { margin-bottom: 40px; }
-    .hero-ctas { display: flex; gap: 14px; align-items: center; margin-bottom: 44px; flex-wrap: wrap; }
+    .hero .lede { margin-bottom: 32px; }
+    .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
     .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
     .visual-frame {
       position: relative; width: 100%; max-width: 440px; aspect-ratio: 4/5;
@@ -78,40 +79,35 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.6; transform: scale(0.85); }
     }
-    .stat-card {
-      position: absolute; background: #fff;
-      border: 1px solid var(--line); border-radius: 10px;
-      padding: 14px 18px; box-shadow: 0 16px 40px -12px rgba(10,10,10,0.18);
+    /* Pilot request form sits in the hero so it is the first thing on the page */
+    .hero-form { position: relative; scroll-margin-top: 96px; }
+    .hero-form .form-card {
+      margin: 0 0 0 auto; padding: 32px; border: 1px solid var(--line);
+      box-shadow: 0 30px 80px -20px rgba(10,10,10,0.18), 0 8px 20px -6px rgba(10,10,10,0.08);
     }
-    .stat-card-1 { top: 8%; left: -14%; display: flex; align-items: center; gap: 12px; }
-    .stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--alert); }
-    .stat-card-1 .stat-title { font-size: 12px; font-weight: 600; color: var(--ink); }
-    .stat-card-1 .stat-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-    .stat-card-2 { bottom: 10%; right: -14%; min-width: 195px; padding: 16px 18px; }
-    .stat-card-2 .sc2-label {
-      font-size: 10px; letter-spacing: 1.2px; color: var(--muted);
-      text-transform: uppercase; font-weight: 700;
-      padding-bottom: 10px; margin-bottom: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-    .stat-card-2 .sc2-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      font-size: 12px; line-height: 1.5;
-      padding: 3px 0;
-    }
-    .stat-card-2 .sc2-row span { color: var(--muted); font-weight: 500; }
-    .stat-card-2 .sc2-row strong { color: var(--ink); font-weight: 700; font-size: 13px; }
-    .stat-card-2 .sc2-row strong em {
-      font-style: normal; color: var(--success);
-      font-weight: 600; font-size: 10px;
-      margin-left: 4px; text-transform: uppercase; letter-spacing: 0.4px;
-    }
+    .form-title { font-size: 24px; line-height: 1.2; letter-spacing: -0.3px; margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .hero-form .form-row { margin-bottom: 14px; }
+    .hero-form .form-row .radio-group { gap: 8px; }
+    .hero-form .form-row .radio-option { padding: 8px 14px; }
+    .hero-form .form-row textarea { min-height: 72px; }
+    .pilot-visual { max-width: 300px; margin: 0 auto 44px; }
     @media (max-width: 960px) {
-      .hero { padding: 56px 0 80px; }
+      .hero { padding: 36px 0 64px; }
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { order: -1; }
-      .visual-frame { max-width: 320px; }
-      .stat-card { display: none; }
+      .hero-copy { padding-top: 0; }
+      .hero h1 { margin-bottom: 20px; }
+      .hero .lede { margin-bottom: 0; }
+      .hero-ctas { display: none; }
+      .hero-grid { gap: 32px; }
+      .hero-form .form-card { margin: 0 auto; padding: 24px; }
+      .pilot-visual { max-width: 240px; }
+    }
+    @media (max-width: 600px) {
+      /* The form is already on screen, so the header only needs the login button */
+      .site-header .nav-cta-login { display: none; }
+      .site-header .nav-cta { white-space: nowrap; }
+      .hero-form .form-row.two { gap: 14px; }
     }
   </style>
   <!-- Carries utm_* from the landing URL onto app.pollenpal.com links (see README) -->
@@ -149,31 +145,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1>Hive management at scale, made <span class="serif-italic">simple</span>.</h1>
         <p class="lede">Built by beekeepers, and it works in the yard. PollenPal watches every bee in and out of every hive and tells you which ones need your attention most, so you know when and where to act.</p>
         <div class="hero-ctas">
-          <a href="#pilot" class="btn btn-primary">Request a pilot →</a>
           <a href="#how" class="btn btn-secondary">See how it works</a>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="visual-frame">
-          <video autoplay muted loop playsinline poster="/images/hero-poster.jpg" preload="metadata">
-            <source src="/images/hero.mp4" type="video/mp4">
-            <img class="poster" src="/images/hero-poster.jpg" alt="PollenPal monitored apiary">
-          </video>
-          <div class="visual-overlay"></div>
-        </div>
-        <div class="stat-card stat-card-1" aria-hidden="true">
-          <span class="stat-dot"></span>
-          <div>
-            <div class="stat-title">Yellow jacket detected · Hive 14</div>
-            <div class="stat-sub">Alert sent 6 min ago</div>
-          </div>
-        </div>
-        <div class="stat-card stat-card-2" aria-hidden="true">
-          <div class="sc2-label">Hive 14 · Health</div>
-          <div class="sc2-row"><span>Frames of bees</span><strong>9 <em>Building</em></strong></div>
-          <div class="sc2-row"><span>Activity</span><strong>Busy</strong></div>
-          <div class="sc2-row"><span>Last scan</span><strong>14s ago</strong></div>
+      <div class="hero-form" id="pilot">
+        <div class="form-card">
+          <h2 class="form-title">Request a pilot</h2>
+          <p class="form-sub">Tell us about your operation and we will be in touch.</p>
+          <form id="pilotForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe">
+            <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+            <div class="form-row two">
+              <div>
+                <label for="p-name">Name *</label>
+                <input type="text" id="p-name" name="entry.455027715" required>
+              </div>
+              <div>
+                <label for="p-email">Email *</label>
+                <input type="email" id="p-email" name="entry.414264367" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>I am a *</label>
+              <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="entry.119689931" value="Hobbyist Beekeeper" required><span>Hobbyist Beekeeper</span></label>
+                <label class="radio-option"><input type="radio" name="entry.119689931" value="Commercial Beekeeper"><span>Commercial Beekeeper</span></label>
+                <label class="radio-option"><input type="radio" name="entry.119689931" value="Investor/Partner"><span>Investor / Partner</span></label>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="p-hives">Hive count</label>
+              <input type="text" id="p-hives" name="entry.355024465">
+            </div>
+            <div class="form-row">
+              <label for="p-msg">Tell us about your operation, including its name</label>
+              <textarea id="p-msg" name="entry.1292345725"></textarea>
+            </div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
+            <button type="submit">Request a pilot →</button>
+          </form>
+          <iframe name="hidden_iframe" style="display:none"></iframe>
         </div>
       </div>
 
@@ -336,44 +347,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ===== PILOT CTA ===== -->
-  <section id="pilot" class="pilot">
+  <section class="pilot">
     <div class="wrap">
+      <div class="visual-frame pilot-visual">
+        <video autoplay muted loop playsinline poster="/images/hero-poster.jpg" preload="metadata">
+          <source src="/images/hero.mp4" type="video/mp4">
+          <img class="poster" src="/images/hero-poster.jpg" alt="PollenPal monitored apiary">
+        </video>
+        <div class="visual-overlay"></div>
+      </div>
       <div class="eyebrow center">Run a pilot</div>
       <h2>Deploy PollenPal on your yard.</h2>
       <p class="lede">We're running pilots with commercial operators in 2026. Tell us about your operation and we'll be in touch.</p>
-
-      <div class="form-card">
-        <form id="pilotForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZLvT2HOrDgzx4v0o0YGF5KoqPiU9s5RIRHZ7R0pF7EaXdUA/formResponse" method="POST" target="hidden_iframe">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-          <div class="form-row">
-            <label for="p-name">Name *</label>
-            <input type="text" id="p-name" name="entry.455027715" required>
-          </div>
-          <div class="form-row">
-            <label for="p-email">Email *</label>
-            <input type="email" id="p-email" name="entry.414264367" required>
-          </div>
-          <div class="form-row">
-            <label>I am a *</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Hobbyist Beekeeper" required><span>Hobbyist Beekeeper</span></label>
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Commercial Beekeeper"><span>Commercial Beekeeper</span></label>
-              <label class="radio-option"><input type="radio" name="entry.119689931" value="Investor/Partner"><span>Investor / Partner</span></label>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="p-hives">Hive count</label>
-            <input type="text" id="p-hives" name="entry.355024465">
-          </div>
-          <div class="form-row">
-            <label for="p-msg">Tell us about your operation (please include your company / operation name)</label>
-            <textarea id="p-msg" name="entry.1292345725"></textarea>
-          </div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADc8h3Y34Jgk0u2e"></div>
-          <button type="submit">Request a pilot →</button>
-        </form>
-        <iframe name="hidden_iframe" style="display:none"></iframe>
-      </div>
+      <a href="#pilot" class="btn btn-gold">Request a pilot →</a>
     </div>
   </section>
 
